@@ -79,10 +79,10 @@ export const profile = {
     { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/rahulkr0407/' },
   ] as SocialLink[],
   photo: {
-    src: 'profile.jpg',
+    src: 'animated_portfolio_image.png',
     alt: 'Portrait of Rahul Kumar',
-    width: 1000,
-    height: 1035,
+    width: 1008,
+    height: 1044,
   },
   navLinks: [
     { id: 'home', label: 'Home' },
