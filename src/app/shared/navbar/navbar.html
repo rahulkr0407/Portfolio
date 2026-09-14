@@ -1,0 +1,97 @@
+<header class="navbar" [class.is-scrolled]="scrolled()">
+  <div class="container-page navbar__frame">
+    <a href="#home" class="navbar__brand" aria-label="Back to top" (click)="closeMenu()">
+      <span class="navbar__monogram" aria-hidden="true">RK</span>
+      <span>Rahul Kumar</span>
+    </a>
+
+    <nav class="navbar__links" aria-label="Primary">
+      <ul class="navbar__list">
+        @for (link of profile.navLinks; track link.id) {
+          <li>
+            <a
+              class="navbar__link"
+              [class.is-active]="activeId() === link.id"
+              [href]="'#' + link.id"
+              (click)="closeMenu()"
+              >{{ link.label }}</a
+            >
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="navbar__actions">
+      <div class="navbar__segmented" role="group" aria-label="Color theme">
+        @for (mode of themeModes; track mode; let i = $index) {
+          <button
+            type="button"
+            class="navbar__seg-btn"
+            [class.is-active]="theme.mode() === mode"
+            [attr.aria-pressed]="theme.mode() === mode"
+            (click)="theme.setMode(mode)"
+          >
+            <app-icon [name]="themeIcons[i]" [size]="16" />
+            <span class="navbar__seg-label">{{ mode }}</span>
+          </button>
+        }
+      </div>
+
+      <button
+        type="button"
+        class="navbar__icon-btn navbar__icon-btn--mobile"
+        [attr.aria-label]="'Theme: ' + theme.mode()"
+        (click)="cycleTheme()"
+      >
+        @switch (theme.mode()) {
+          @case ('dark') {
+            <app-icon name="moon" [size]="19" />
+          }
+          @case ('light') {
+            <app-icon name="sun" [size]="19" />
+          }
+          @default {
+            <app-icon name="monitor" [size]="19" />
+          }
+        }
+      </button>
+
+      <button
+        type="button"
+        class="navbar__icon-btn navbar__icon-btn--mobile"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-menu"
+        aria-label="Toggle navigation menu"
+        (click)="toggleMenu()"
+      >
+        @if (menuOpen()) {
+          <app-icon name="x" [size]="19" />
+        } @else {
+          <app-icon name="menu" [size]="19" />
+        }
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="navbar__mobile"
+    [class.is-open]="menuOpen()"
+  >
+    <nav aria-label="Mobile">
+      <ul class="navbar__mobile-list">
+        @for (link of profile.navLinks; track link.id) {
+          <li>
+            <a
+              class="navbar__mobile-link"
+              [class.is-active]="activeId() === link.id"
+              [href]="'#' + link.id"
+              (click)="closeMenu()"
+              >{{ link.label }}</a
+            >
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

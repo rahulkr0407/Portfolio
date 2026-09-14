@@ -1,0 +1,66 @@
+<section id="contact" class="section">
+  <div class="container-page">
+    <div appScrollReveal>
+      <app-section-head
+        eyebrow="06 · Contact"
+        title="Let's start a conversation"
+        lead="Whether you have a role in mind, a project question, or just want to connect — my inbox is always open."
+      />
+    </div>
+
+    <div class="contact__grid" appScrollReveal>
+      <a class="card card--hover contact__card" href="mailto:{{ profile.email }}">
+        <span class="contact__icon" aria-hidden="true">
+          <app-icon name="mail" [size]="20" />
+        </span>
+        <span class="contact__label">Email</span>
+        <span class="contact__value">{{ profile.email }}</span>
+      </a>
+
+      <a class="card card--hover contact__card" [href]="telHref">
+        <span class="contact__icon" aria-hidden="true">
+          <app-icon name="phone" [size]="20" />
+        </span>
+        <span class="contact__label">Phone</span>
+        <span class="contact__value">{{ profile.phone }}</span>
+      </a>
+
+      <div class="card contact__card">
+        <span class="contact__icon" aria-hidden="true">
+          <app-icon name="map-pin" [size]="20" />
+        </span>
+        <span class="contact__label">Location</span>
+        <span class="contact__value">{{ profile.location }}</span>
+      </div>
+    </div>
+
+    <div class="contact__socials" appScrollReveal>
+      @for (social of profile.socials; track social.href) {
+        <a
+          class="contact__social"
+          [href]="social.href"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <app-icon [name]="social.icon" [size]="20" />
+          <span>{{ social.label }}</span>
+        </a>
+      }
+      <app-button variant="primary" href="mailto:{{ profile.email }}">
+        Send an email <app-icon name="arrow-right" [size]="18" />
+      </app-button>
+    </div>
+
+    <div class="card contact__resume" appScrollReveal>
+      <div class="contact__resume-copy">
+        <h3 class="contact__resume-title">Want the full picture?</h3>
+        <p class="contact__resume-text">
+          Every detail of my experience, education, and technical background lives in one page.
+        </p>
+      </div>
+      <app-button variant="accent" href="/Rahul_Kumar_Resume.pdf" target="_blank" rel="noopener">
+        Download Resume <app-icon name="download" [size]="18" />
+      </app-button>
+    </div>
+  </div>
+</section>

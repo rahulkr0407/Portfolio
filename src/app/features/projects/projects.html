@@ -1,0 +1,95 @@
+<section id="projects" class="section">
+  <div class="container-page">
+    <div appScrollReveal>
+      <app-section-head
+        eyebrow="04 · Projects"
+        title="Things I've built"
+        lead="A focused selection of my work — built to solve real problems and shipped with production tooling."
+      />
+    </div>
+
+    @if (featured; as project) {
+      <article class="projects__featured" appScrollReveal>
+        <div class="projects__featured-head">
+          <div class="projects__featured-title">
+            <span class="chip projects__featured-chip">
+              <app-icon name="sparkles" [size]="14" />
+              Featured project
+            </span>
+            <h3 class="projects__title projects__title--lg">{{ project.title }}</h3>
+            <p class="projects__tagline">{{ project.tagline }}</p>
+          </div>
+          <span class="projects__index" aria-hidden="true">01</span>
+        </div>
+
+        <ul class="projects__bullets">
+          @for (bullet of project.bullets; track bullet) {
+            <li class="projects__bullet">
+              <app-icon name="arrow-right" [size]="16" />
+              <span>{{ bullet }}</span>
+            </li>
+          }
+        </ul>
+
+        <ul class="projects__tags">
+          @for (tag of project.tags; track tag) {
+            <li>
+              <span class="chip">{{ tag }}</span>
+            </li>
+          }
+        </ul>
+
+        <div class="projects__actions">
+          <app-button variant="primary" (click)="openStudy(project)">
+            Open case study <app-icon name="chevron-right" [size]="18" />
+          </app-button>
+          @if (project.live) {
+            <app-button variant="outline" [href]="project.live" target="_blank" rel="noopener noreferrer">
+              <app-icon name="external-link" [size]="18" />
+              Live demo
+            </app-button>
+          }
+        </div>
+      </article>
+    }
+
+    @if (secondary.length > 0) {
+      <div class="projects__grid">
+        @for (project of secondary; track project.title) {
+          <article class="card card--hover projects__card" appScrollReveal>
+            <div class="projects__card-head">
+              <span class="projects__icon" aria-hidden="true">
+                <app-icon name="briefcase" [size]="20" />
+              </span>
+              <span class="projects__index">{{ ($index + 2).toString().padStart(2, '0') }}</span>
+            </div>
+
+            <h3 class="projects__title">{{ project.title }}</h3>
+            <p class="projects__tagline">{{ project.tagline }}</p>
+
+            <ul class="projects__bullets">
+              @for (bullet of project.bullets; track bullet) {
+                <li class="projects__bullet">
+                  <app-icon name="arrow-right" [size]="16" />
+                  <span>{{ bullet }}</span>
+                </li>
+              }
+            </ul>
+
+            <ul class="projects__tags">
+              @for (tag of project.tags; track tag) {
+                <li>
+                  <span class="chip">{{ tag }}</span>
+                </li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+    }
+
+    @if (activeStudy(); as active) {
+      <app-case-study-modal [project]="active" (closed)="closeStudy()" />
+    }
+  </div>
+</section>

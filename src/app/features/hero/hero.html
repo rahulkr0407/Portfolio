@@ -1,0 +1,67 @@
+<section id="home" class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+
+  <div class="container-page hero__grid">
+    <div class="hero__content">
+      <span class="chip hero__chip animate-fade-up" style="animation-delay: 0ms">
+        <span class="hero__dot" aria-hidden="true"></span>
+        {{ profile.availability }}
+      </span>
+
+      <h1 class="hero__title animate-fade-up" style="animation-delay: 120ms">
+        {{ profile.greeting }}
+        <span class="text-gradient">{{ profile.name }}</span>
+      </h1>
+
+      <p class="hero__subtitle animate-fade-up" style="animation-delay: 220ms">
+        {{ profile.title }} <span class="hero__sep" aria-hidden="true">&middot;</span> Angular &amp; TypeScript
+      </p>
+
+      <p class="hero__role animate-fade-up" style="animation-delay: 320ms">
+        I build with
+        <span class="hero__typed"
+          >{{ typed()
+          }}<span class="hero__caret" [class.hero__caret--hidden]="!caretVisible()">|</span></span
+        >
+      </p>
+
+      <p class="hero__intro animate-fade-up" style="animation-delay: 440ms">
+        {{ profile.intro }}
+      </p>
+
+      <div class="hero__cta animate-fade-up" style="animation-delay: 560ms">
+        <app-button variant="primary" size="lg" href="#projects">
+          View Projects <app-icon name="arrow-right" [size]="18" />
+        </app-button>
+        <app-button variant="outline" size="lg" href="/Rahul_Kumar_Resume.pdf" target="_blank" rel="noopener">
+          Download Resume <app-icon name="download" [size]="18" />
+        </app-button>
+      </div>
+
+      <ul class="hero__socials animate-fade-up" style="animation-delay: 680ms">
+        @for (social of profile.socials; track social.href) {
+          <li>
+            <a class="hero__social" [href]="social.href" target="_blank" rel="noopener noreferrer">
+              <app-icon [name]="social.icon" [size]="20" />
+              <span>{{ social.label }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="hero__visual animate-fade-up" style="animation-delay: 200ms">
+      <div class="hero__photo-wrap">
+        <div class="hero__glow" aria-hidden="true"></div>
+        <img
+          class="hero__photo"
+          [src]="profile.photo.src"
+          [alt]="profile.photo.alt"
+          [width]="profile.photo.width"
+          [height]="profile.photo.height"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </div>
+</section>

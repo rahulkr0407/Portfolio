@@ -1,0 +1,97 @@
+@if (project(); as project) {
+  <div class="modal">
+    <div
+      class="modal__panel"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="'cs-title-' + project.title.toLowerCase().replaceAll(' ', '-')"
+    >
+      <header class="modal__header">
+        <div class="modal__title-row">
+          <span class="modal__icon" aria-hidden="true">
+            <app-icon name="sparkles" [size]="20" />
+          </span>
+          <div>
+            <h2
+              class="modal__title"
+              [id]="'cs-title-' + project.title.toLowerCase().replaceAll(' ', '-')"
+            >
+              {{ project.title }}
+            </h2>
+            <p class="modal__tagline">{{ project.tagline }}</p>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="modal__close"
+          data-modal-close
+          [attr.aria-label]="'Close case study for ' + project.title"
+          (click)="close()"
+        >
+          <app-icon name="x" [size]="20" />
+        </button>
+      </header>
+
+      <div class="modal__body">
+        @if (project.caseStudy; as study) {
+          <section class="modal__section">
+            <h3 class="modal__subhead">Overview</h3>
+            <p class="modal__text">{{ study.overview }}</p>
+          </section>
+
+          <section class="modal__section">
+            <h3 class="modal__subhead">Solution</h3>
+            <p class="modal__text">{{ study.solution }}</p>
+          </section>
+
+          <section class="modal__section">
+            <h3 class="modal__subhead">Key features</h3>
+            <ul class="modal__list">
+              @for (feature of study.keyFeatures; track feature) {
+                <li class="modal__list-item">
+                  <app-icon name="arrow-right" [size]="16" />
+                  <span>{{ feature }}</span>
+                </li>
+              }
+            </ul>
+          </section>
+
+          <section class="modal__section">
+            <h3 class="modal__subhead">Technology</h3>
+            <ul class="modal__chips">
+              @for (tech of study.technology; track tech) {
+                <li>
+                  <span class="chip">{{ tech }}</span>
+                </li>
+              }
+            </ul>
+          </section>
+
+          <section class="modal__section" data-modal-last>
+            <h3 class="modal__subhead">Development</h3>
+            <ol class="modal__list modal__list--ordered">
+              @for (step of study.development; track step) {
+                <li class="modal__list-item">
+                  <span class="modal__step" aria-hidden="true">{{ ($index + 1).toString().padStart(2, '0') }}</span>
+                  <span>{{ step }}</span>
+                </li>
+              }
+            </ol>
+          </section>
+        }
+      </div>
+
+      <footer class="modal__footer">
+        @if (project.github) {
+          <app-button variant="outline" size="sm" [href]="project.github" target="_blank" rel="noopener noreferrer">
+            <app-icon name="github" [size]="16" />
+            View code
+          </app-button>
+        }
+        <app-button variant="primary" size="sm" (click)="close()">
+          Close <app-icon name="x" [size]="16" />
+        </app-button>
+      </footer>
+    </div>
+  </div>
+}

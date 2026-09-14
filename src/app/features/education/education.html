@@ -1,0 +1,25 @@
+<section id="education" class="section">
+  <div class="container-page">
+    <div appScrollReveal>
+      <app-section-head
+        eyebrow="05 · Education"
+        title="Where I studied"
+        lead="The academic path that shaped my foundation in computer science."
+      />
+    </div>
+
+    <ol class="education__list" appScrollReveal>
+      @for (entry of profile.education; track entry.school) {
+        <li class="education__item">
+          <span class="education__icon" aria-hidden="true">
+            <app-icon name="graduation-cap" [size]="18" />
+          </span>
+          <span class="chip education__year">{{ entry.year }}</span>
+          <p class="education__level">{{ entry.level }}</p>
+          <h3 class="education__school">{{ entry.school }}</h3>
+          <p class="education__detail">{{ entry.detail }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

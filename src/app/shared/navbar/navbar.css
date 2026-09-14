@@ -1,0 +1,238 @@
+:host {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+  display: block;
+}
+
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.navbar {
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.navbar.is-scrolled {
+  background-color: color-mix(in oklab, var(--surface) 80%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom-color: var(--line);
+  box-shadow: 0 10px 30px -20px color-mix(in oklab, black 50%, transparent);
+}
+
+.navbar__frame {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 4rem;
+}
+
+.navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.navbar__monogram {
+  display: grid;
+  place-items: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 0.65rem;
+  background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 14px -8px var(--accent);
+}
+
+.navbar__links {
+  display: none;
+}
+
+.navbar__list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar__link {
+  position: relative;
+  display: inline-block;
+  padding: 0.45rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  transition: color 0.2s ease;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  left: 0.8rem;
+  right: 0.8rem;
+  bottom: 0.2rem;
+  height: 2px;
+  border-radius: 2px;
+  background-image: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar__link:hover,
+.navbar__link.is-active {
+  color: var(--ink);
+}
+
+.navbar__link:hover::after,
+.navbar__link.is-active::after {
+  transform: scaleX(1);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.navbar__segmented {
+  display: none;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background-color: var(--surface-raised);
+}
+
+.navbar__seg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.navbar__seg-btn:hover {
+  color: var(--ink);
+}
+
+.navbar__seg-btn.is-active {
+  background-color: var(--surface-sunken);
+  color: var(--ink);
+}
+
+.navbar__seg-label {
+  display: none;
+}
+
+.navbar__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 0.6rem;
+  color: var(--ink-soft);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.navbar__icon-btn:hover {
+  color: var(--ink);
+  background-color: var(--surface-sunken);
+}
+
+.navbar__mobile {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  border-bottom: 1px solid var(--line);
+  background-color: var(--surface-raised);
+  box-shadow: 0 24px 32px -24px color-mix(in oklab, black 40%, transparent);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s;
+}
+
+.navbar__mobile.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+.navbar__mobile-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0.5rem 1.25rem 1.1rem;
+  list-style: none;
+}
+
+.navbar__mobile-link {
+  display: block;
+  padding: 0.7rem 0.1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+  transition: color 0.2s ease;
+}
+
+.navbar__mobile-link:last-child {
+  border-bottom: 0;
+}
+
+.navbar__mobile-link:hover,
+.navbar__mobile-link.is-active {
+  color: var(--accent);
+}
+
+@media (min-width: 48rem) {
+  .navbar__links {
+    display: block;
+  }
+
+  .navbar__segmented {
+    display: inline-flex;
+  }
+
+  .navbar__seg-label {
+    display: inline;
+  }
+
+  .navbar__icon-btn--mobile,
+  .navbar__mobile {
+    display: none;
+  }
+}

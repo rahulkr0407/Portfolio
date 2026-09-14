@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  background-color: var(--accent);
+  color: var(--on-accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.25s ease;
+}
+
+.skip-link:focus {
+  transform: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

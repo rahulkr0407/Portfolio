@@ -1,0 +1,130 @@
+:host {
+  display: block;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 40rem) {
+  .contact__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 64rem) {
+  .contact__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.contact__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background-color: var(--surface-raised);
+}
+
+a.contact__card {
+  text-decoration: none;
+}
+
+a.contact__card:hover .contact__value {
+  color: var(--accent);
+}
+
+a.contact__card:hover {
+  box-shadow: 0 22px 44px -24px color-mix(in oklab, black 40%, transparent);
+  transform: translateY(-4px);
+}
+
+.contact__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.8rem;
+  background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  box-shadow: 0 10px 20px -12px var(--accent);
+}
+
+.contact__label {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.contact__value {
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+  transition: color 0.2s ease;
+  overflow-wrap: anywhere;
+}
+
+.contact__socials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.contact__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  transition: color 0.2s ease;
+}
+
+.contact__social:hover {
+  color: var(--accent);
+}
+
+.contact__resume {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border-color: color-mix(in oklab, var(--accent) 40%, var(--line));
+  background-image:
+    radial-gradient(closest-side, color-mix(in oklab, var(--accent) 10%, transparent), transparent),
+    linear-gradient(180deg, color-mix(in oklab, var(--accent) 5%, var(--surface-raised)), var(--surface-raised));
+}
+
+@media (min-width: 40rem) {
+  .contact__resume {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.contact__resume-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.contact__resume-text {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}

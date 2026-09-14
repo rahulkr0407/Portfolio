@@ -1,0 +1,39 @@
+<section id="skills" class="section">
+  <div class="container-page">
+    <div appScrollReveal>
+      <app-section-head
+        eyebrow="03 · Skills"
+        title="Tools & technologies"
+        lead="The languages, frameworks, and tools I use to research, build, and ship."
+      />
+    </div>
+
+    <div class="skills__grid">
+      @for (category of profile.skills; track category.category) {
+        <div
+          class="card skills__card"
+          [class.skills__card--highlight]="category.highlight"
+          appScrollReveal
+        >
+          <div class="skills__card-top">
+            <span class="skills__icon" aria-hidden="true">
+              <app-icon [name]="category.icon" [size]="22" />
+            </span>
+            <h3 class="skills__title">{{ category.category }}</h3>
+            @if (category.highlight) {
+              <span class="skills__badge">Core</span>
+            }
+          </div>
+          <ul class="skills__list">
+            @for (item of category.items; track item) {
+              <li class="skills__item">
+                <span class="skills__dot" aria-hidden="true"></span>
+                {{ item }}
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>

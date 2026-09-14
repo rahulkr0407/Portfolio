@@ -1,0 +1,369 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-caret: caret-blink 1s step-end infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes caret-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Theme palettes                                                      */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --surface: oklch(0.965 0.004 260);
+  --surface-raised: oklch(1 0 0);
+  --surface-sunken: oklch(0.93 0.006 260);
+  --ink: oklch(0.24 0.02 262);
+  --ink-soft: oklch(0.4 0.018 262);
+  --ink-muted: oklch(0.52 0.014 262);
+  --line: oklch(0.885 0.008 260);
+  --line-strong: oklch(0.78 0.014 260);
+  --accent: oklch(0.55 0.22 265);
+  --accent-2: oklch(0.6 0.2 305);
+  --accent-soft: oklch(0.5 0.1 265 / 0.14);
+  --on-accent: oklch(1 0 0);
+  color-scheme: light;
+}
+
+.dark {
+  --surface: oklch(0.155 0.012 262);
+  --surface-raised: oklch(0.2 0.013 262);
+  --surface-sunken: oklch(0.125 0.01 262);
+  --ink: oklch(0.95 0.005 262);
+  --ink-soft: oklch(0.82 0.008 262);
+  --ink-muted: oklch(0.66 0.012 262);
+  --line: oklch(0.28 0.014 262);
+  --line-strong: oklch(0.39 0.017 262);
+  --accent: oklch(0.66 0.18 265);
+  --accent-2: oklch(0.69 0.17 305);
+  --accent-soft: oklch(0.6 0.16 270 / 0.22);
+  --on-accent: oklch(0.99 0.005 262);
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--line-strong);
+    border-radius: 999px;
+    border: 2px solid var(--surface);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Primitives (buttons, cards, chips, layout)                          */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-inline: 1.25rem;
+  }
+
+  .section {
+    padding-block: 5rem;
+  }
+
+  .section-head {
+    max-width: 42rem;
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background-image: linear-gradient(90deg, var(--accent), transparent);
+  }
+
+  .section-title {
+    margin-top: 0.85rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  .section-lead {
+    margin-top: 1rem;
+    max-width: 40rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+
+  .text-gradient {
+    background-image: linear-gradient(105deg, var(--accent), var(--accent-2));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background-color: var(--surface-raised);
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.82rem 1.4rem;
+    border: 1px solid transparent;
+    border-radius: 0.7rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .btn:active {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  .btn--primary {
+    background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
+    color: var(--on-accent);
+    box-shadow: 0 10px 24px -14px var(--accent);
+  }
+
+  .btn--primary:hover {
+    box-shadow: 0 16px 32px -14px var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .btn--accent {
+    background-color: var(--ink);
+    color: var(--surface);
+  }
+
+  .btn--accent:hover {
+    background-color: var(--ink);
+    box-shadow: 0 16px 32px -14px var(--ink);
+    transform: translateY(-1px);
+  }
+
+  .btn--outline {
+    border-color: var(--line-strong);
+    background-color: transparent;
+    color: var(--ink);
+  }
+
+  .btn--outline:hover {
+    border-color: var(--accent);
+    background-color: var(--accent-soft);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .btn--ghost {
+    background-color: transparent;
+    color: var(--ink-soft);
+  }
+
+  .btn--ghost:hover {
+    background-color: var(--surface-sunken);
+    color: var(--ink);
+  }
+
+  .btn--sm {
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 0.6rem;
+  }
+
+  .btn--lg {
+    padding: 1rem 1.9rem;
+    font-size: 1.05rem;
+    border-radius: 0.8rem;
+  }
+
+  .card {
+    position: relative;
+    padding: 1.5rem;
+    background-color: var(--surface-raised);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .card--hover:hover {
+    transform: translateY(-4px);
+    border-color: var(--line-strong);
+    box-shadow: 0 22px 44px -24px color-mix(in oklab, black 40%, transparent);
+  }
+}
+
+/* Modal scroll lock (activated by appCaseStudyModal) */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll reveal (driven by appScrollReveal directive)                 */
+/* ------------------------------------------------------------------ */
+
+@layer utilities {
+  .js-reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .js-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Accessibility: respect reduced motion                               */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

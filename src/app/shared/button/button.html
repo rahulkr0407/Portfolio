@@ -1,0 +1,15 @@
+@if (href(); as hrefValue) {
+  <a
+    class="btn"
+    [class]="classes()"
+    [href]="hrefValue"
+    [attr.target]="target() ? target() : null"
+    [attr.rel]="rel() ? rel() : null"
+  >
+    <ng-content />
+  </a>
+} @else {
+  <button type="button" class="btn" [class]="classes()" [disabled]="disabled()">
+    <ng-content />
+  </button>
+}

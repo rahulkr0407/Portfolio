@@ -1,0 +1,42 @@
+<section id="about" class="section">
+  <div class="container-page">
+    <div appScrollReveal>
+      <app-section-head
+        eyebrow="01 · About"
+        title="A bit about me"
+        lead="A quick look at who I am and what I work with."
+      />
+    </div>
+
+    <div class="about__grid">
+      <div class="about__body" appScrollReveal [appScrollRevealDelay]="80">
+        @for (paragraph of profile.about.paragraphs; track paragraph) {
+          <p class="about__paragraph">{{ paragraph }}</p>
+        }
+
+        <h3 class="about__subhead">Core technologies</h3>
+        <ul class="about__tech">
+          @for (tech of profile.about.coreTech; track tech) {
+            <li>
+              <span class="chip">{{ tech }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <aside class="about__side" appScrollReveal [appScrollRevealDelay]="160">
+        <div class="card about__facts">
+          <h3 class="about__facts-title">Quick facts</h3>
+          <dl class="about__fact-list">
+            @for (fact of profile.about.facts; track fact.label) {
+              <div class="about__fact">
+                <dt class="about__fact-label">{{ fact.label }}</dt>
+                <dd class="about__fact-value">{{ fact.value }}</dd>
+              </div>
+            }
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
