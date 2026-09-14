@@ -38,5 +38,24 @@
         </div>
       </aside>
     </div>
+
+    <dl class="about__stats" appScrollReveal>
+      <div class="about__stat">
+        <app-count-up [value]="4" />
+        <dd class="about__stat-label">Projects built</dd>
+      </div>
+      <div class="about__stat">
+        <app-count-up [value]="18" suffix="+" />
+        <dd class="about__stat-label">REST API endpoints</dd>
+      </div>
+      <div class="about__stat">
+        <app-count-up [value]="6" />
+        <dd class="about__stat-label">Skill areas</dd>
+      </div>
+      <div class="about__stat">
+        <app-count-up [value]="1" suffix="+" />
+        <dd class="about__stat-label">Year at TCS</dd>
+      </div>
+    </dl>
   </div>
 </section>

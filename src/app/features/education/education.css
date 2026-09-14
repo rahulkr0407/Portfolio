@@ -73,3 +73,26 @@
   line-height: 1.7;
   color: var(--ink-soft);
 }
+
+.education__grade {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--line));
+  border-radius: 999px;
+  background-color: var(--surface-raised);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.education__grade app-icon {
+  flex-shrink: 0;
+}
+
+.education__item:hover .education__grade {
+  background-color: color-mix(in oklab, var(--accent) 10%, var(--surface-raised));
+}

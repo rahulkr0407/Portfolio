@@ -1,0 +1,14 @@
+<div class="marquee" [class.marquee--static]="reduceMotion" aria-hidden="true">
+  <div class="marquee__track">
+    @for (loop of [0, 1]; track loop) {
+      <div class="marquee__group">
+        @for (item of items(); track item) {
+          <span class="marquee__item">
+            <app-icon name="sparkles" [size]="14" />
+            {{ item }}
+          </span>
+        }
+      </div>
+    }
+  </div>
+</div>

@@ -36,13 +36,23 @@ for (const vp of viewports) {
     const skills = document.querySelector('.skills__grid');
     const contact = document.querySelector('.contact__grid');
     const burger = document.querySelector('[aria-label="Toggle navigation menu"]');
+    const stats = document.querySelector('.about__stats');
     return {
       overflowX: doc.scrollWidth - doc.clientWidth,
       height: doc.scrollHeight,
       sections,
       skillsGridColumns: skills ? getComputedStyle(skills).gridTemplateColumns : 'n/a',
       contactGridColumns: contact ? getComputedStyle(contact).gridTemplateColumns : 'n/a',
+      statsGridColumns: stats ? getComputedStyle(stats).gridTemplateColumns : 'n/a',
       burgerDisplay: burger ? getComputedStyle(burger).display : 'missing',
+      marquee: !!document.querySelector('app-marquee .marquee'),
+      scrollProgress: !!document.querySelector('app-scroll-progress .scroll-progress'),
+      educationItems: document.querySelectorAll('.education__item').length,
+      projectCards: document.querySelectorAll('.projects__card').length,
+      featuredProject: !!document.querySelector('.projects__featured'),
+      buttonContent: [...document.querySelectorAll('.btn')].every(
+        (el) => (el.textContent || '').trim().length > 0,
+      ),
     };
   }, SECTION_IDS);
 
@@ -89,14 +99,41 @@ for (const vp of viewports) {
     modal = modalVisible && scrollLocked && modalClosed && scrollUnlocked ? 'ok' : 'broken';
   }
 
+  let progressBar = false;
+  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' }));
+  await page.waitForTimeout(300);
+  progressBar = await page.evaluate(() => {
+    const el = document.querySelector('.scroll-progress');
+    if (!el) return false;
+    const p = parseFloat(el.style.getPropertyValue('--progress')) || 0;
+    return p > 1;
+  });
+
+  let statsCountUp = false;
+  await page.locator('#about').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(1700);
+  statsCountUp = await page.evaluate(() => {
+    const nums = [...document.querySelectorAll('.about__stats .count-up__number')];
+    return nums.length === 4 && nums.every((n) => parseFloat(n.textContent) > 0);
+  });
+
   await page.screenshot({ path: `${OUT}/${vp.name}.png`, fullPage: true });
   results.push({
     viewport: vp.name,
     overflowX: metrics.overflowX,
     missingSections: missing,
+    marquee: metrics.marquee,
+    scrollProgress: metrics.scrollProgress,
+    progressBar,
+    educationItems: metrics.educationItems,
+    projectCards: metrics.projectCards,
+    featuredProject: metrics.featuredProject,
+    buttonContent: metrics.buttonContent,
+    statsCountUp,
     brakedown: {
       skillsGrid: metrics.skillsGridColumns,
       contactGrid: metrics.contactGridColumns,
+      statsGrid: metrics.statsGridColumns,
       burger: metrics.burgerDisplay,
     },
     scrollSpyAfterProjects: scrollSpyActive,

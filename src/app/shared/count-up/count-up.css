@@ -1,0 +1,37 @@
+:host {
+  display: inline-block;
+}
+
+.count-up {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.count-up__number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.count-up__suffix {
+  margin-left: 0.1rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+@media (min-width: 40rem) {
+  .count-up__number {
+    font-size: 2.4rem;
+  }
+
+  .count-up__suffix {
+    font-size: 1.6rem;
+  }
+}

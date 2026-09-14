@@ -21,6 +21,26 @@
   flex-direction: column;
 }
 
+.projects__card::after {
+  content: '';
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  top: -1px;
+  height: 2px;
+  background-image: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.projects__card:hover::after {
+  opacity: 1;
+}
+
+.projects__card:hover .projects__icon {
+  transform: scale(1.08);
+}
+
 .projects__card-head {
   display: flex;
   align-items: center;
@@ -38,6 +58,7 @@
   background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
   color: var(--on-accent);
   box-shadow: 0 10px 20px -12px var(--accent);
+  transition: transform 0.3s ease;
 }
 
 .projects__index {

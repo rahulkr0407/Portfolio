@@ -1,0 +1,55 @@
+:host {
+  display: block;
+}
+
+.marquee {
+  overflow: hidden;
+  padding-block: 1.05rem;
+  border-block: 1px solid var(--line);
+  background-color: color-mix(in oklab, var(--accent) 6%, var(--surface-raised));
+  user-select: none;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee--static .marquee__track {
+  animation: none;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 2.75rem;
+  padding-right: 2.75rem;
+  white-space: nowrap;
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.marquee__item app-icon {
+  color: var(--accent);
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}

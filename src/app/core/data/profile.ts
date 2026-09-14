@@ -25,6 +25,7 @@ export interface EducationEntry {
   school: string;
   year: string;
   detail: string;
+  grade?: string;
 }
 
 export interface Experience {
@@ -130,10 +131,25 @@ export const profile = {
   ] as SkillCategory[],
   education: [
     {
+      level: 'Matriculation',
+      school: 'Jawahar Navodaya Vidyalaya',
+      year: '2018',
+      detail: 'Completed 10th standard',
+      grade: '85%',
+    },
+    {
+      level: 'Intermediate',
+      school: 'Vj Sachdeva Int School',
+      year: '2020',
+      detail: 'Completed 12th standard',
+      grade: '65%',
+    },
+    {
       level: 'Bachelor of Technology',
       school: 'Lovely Professional University',
       year: '2020 — 2024',
       detail: 'Computer Science & Engineering',
+      grade: 'CGPA 7.32',
     },
   ] as EducationEntry[],
   projects: [
@@ -200,6 +216,26 @@ export const profile = {
         'Built analytics dashboards and subscription features with secure API communication and error handling.',
       ],
       tags: ['Angular', 'TypeScript', 'JWT'],
+    },
+    {
+      title: 'COVID-19 Vaccine Slot Finder',
+      tagline: 'Real-Time Vaccine Availability Web App',
+      bullets: [
+        'Developed a web application to check COVID-19 vaccine slot availability in real time by integrating a public REST API.',
+        'Built a user-friendly, interactive interface using HTML, CSS, and JavaScript that dynamically updates slot data.',
+        'Presented availability details like date, dose, and location clearly, with a clean and responsive layout.',
+      ],
+      tags: ['HTML', 'CSS', 'JavaScript', 'REST API'],
+    },
+    {
+      title: 'Market Segmentation for McDonald\'s',
+      tagline: 'Data-Driven Consumer Segmentation',
+      bullets: [
+        'Led a data-driven market segmentation project for McDonald\'s using K-Means clustering to identify customer segments based on purchasing behavior and demographics.',
+        'Cleaned and transformed data, handling missing values and encoding categorical variables to prepare for analysis.',
+        'Visualized key insights using PCA and created targeted marketing strategies for segments like loyal customers and families.',
+      ],
+      tags: ['Python', 'Pandas', 'K-Means', 'PCA'],
     },
   ] as Project[],
 };

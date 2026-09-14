@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 
 export type ButtonVariant = 'primary' | 'accent' | 'outline' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -7,6 +8,7 @@ export type ButtonSize = 'sm' | 'md' | 'lg';
   selector: 'app-button',
   templateUrl: './button.html',
   styleUrl: './button.css',
+  imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Button {

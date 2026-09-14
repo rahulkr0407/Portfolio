@@ -18,6 +18,12 @@
           <p class="education__level">{{ entry.level }}</p>
           <h3 class="education__school">{{ entry.school }}</h3>
           <p class="education__detail">{{ entry.detail }}</p>
+          @if (entry.grade) {
+            <p class="education__grade">
+              <app-icon name="sparkles" [size]="15" />
+              <span>{{ entry.grade }}</span>
+            </p>
+          }
         </li>
       }
     </ol>
