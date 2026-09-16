@@ -2,9 +2,9 @@
   <div class="container-page">
     <div appScrollReveal>
       <app-section-head
-        eyebrow="04 · Projects"
-        title="Things I've built"
-        lead="A focused selection of my work — built to solve real problems and shipped with production tooling."
+        eyebrow="05 · Projects"
+        title="Projects"
+        lead="A selection of projects built to solve real problems with production-grade tooling."
       />
     </div>
 
@@ -83,6 +83,35 @@
                 </li>
               }
             </ul>
+
+            @if (project.github || project.live) {
+              <div class="projects__card-actions">
+                @if (project.github) {
+                  <a
+                    class="projects__card-link"
+                    [href]="project.github"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    [attr.aria-label]="'GitHub repository for ' + project.title"
+                  >
+                    <app-icon name="github" [size]="18" />
+                    GitHub
+                  </a>
+                }
+                @if (project.live) {
+                  <a
+                    class="projects__card-link"
+                    [href]="project.live"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    [attr.aria-label]="'Live demo of ' + project.title"
+                  >
+                    <app-icon name="external-link" [size]="18" />
+                    Live demo
+                  </a>
+                }
+              </div>
+            }
           </article>
         }
       </div>

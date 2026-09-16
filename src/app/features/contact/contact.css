@@ -72,6 +72,108 @@ a.contact__card:hover {
   overflow-wrap: anywhere;
 }
 
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 2.5rem;
+  padding: 2rem;
+}
+
+.contact__form-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.contact__form-sub {
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact__field-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.contact__input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background-color: var(--surface-sunken);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact__input::placeholder {
+  color: var(--ink-soft);
+}
+
+.contact__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+.contact__input--area {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.contact__hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+.contact__form-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: 0.25rem;
+}
+
+.contact__form-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.contact__form-note--ok {
+  color: var(--accent);
+}
+
+.contact__form-note--err {
+  color: var(--danger, #e5484d);
+}
+
+@media (min-width: 64rem) {
+  .contact__form {
+    padding: 2.5rem;
+  }
+}
+
 .contact__socials {
   display: flex;
   flex-wrap: wrap;

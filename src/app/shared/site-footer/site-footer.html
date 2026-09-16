@@ -1,11 +1,58 @@
 <footer class="site-footer">
-  <div class="container-page site-footer__inner">
-    <div>
-      <p class="site-footer__name">{{ profile.name }}</p>
-      <p class="site-footer__meta">&copy; {{ year }} · Built with Angular &amp; Tailwind CSS</p>
+  <div class="site-footer__accent" aria-hidden="true"></div>
+
+  <div class="container-page">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <span class="site-footer__mark" aria-hidden="true">RK</span>
+        <div>
+          <p class="site-footer__name">{{ profile.name }}</p>
+          <p class="site-footer__tagline">Frontend Developer &middot; Building enterprise &amp; AI-powered web apps</p>
+        </div>
+      </div>
+
+      <nav class="site-footer__zone" aria-label="Footer">
+        <p class="site-footer__label">Explore</p>
+        <ul class="site-footer__links">
+          @for (link of footerLinks; track link.id) {
+            <li>
+              <a class="site-footer__link" [href]="'#' + link.id">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div class="site-footer__zone">
+        <p class="site-footer__label">Get in touch</p>
+        <a class="site-footer__email" href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+        <ul class="site-footer__socials">
+          @for (social of profile.socials; track social.href) {
+            <li>
+              <a
+                class="site-footer__social"
+                [href]="social.href"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="social.label"
+              >
+                <app-icon [name]="social.icon" [size]="20" />
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
     </div>
-    <a class="site-footer__top" href="#home">
-      Back to top <app-icon name="arrow-up" [size]="16" />
-    </a>
+
+    <div class="site-footer__bottom">
+      <p class="site-footer__meta">
+        &copy; {{ year }} {{ profile.name }} &middot; Built with Angular &amp; Tailwind CSS
+      </p>
+      <div class="site-footer__bottom-right">
+        <p class="site-footer__stack">Angular &middot; TypeScript &middot; Python &middot; Docker</p>
+        <a class="site-footer__top" href="#home" aria-label="Back to top">
+          <app-icon name="arrow-up" [size]="18" />
+        </a>
+      </div>
+    </div>
   </div>
 </footer>

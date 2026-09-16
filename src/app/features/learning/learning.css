@@ -1,0 +1,72 @@
+:host {
+  display: block;
+}
+
+.learning__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 40rem) {
+  .learning__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 64rem) {
+  .learning__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.learning__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.learning__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.learning__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.85rem;
+  background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  box-shadow: 0 10px 22px -12px var(--accent);
+}
+
+.learning__pill {
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--line));
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.learning__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.learning__focus {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}

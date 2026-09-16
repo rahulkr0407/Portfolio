@@ -1,0 +1,28 @@
+<section id="certifications" class="section">
+  <div class="container-page">
+    <div appScrollReveal>
+      <app-section-head
+        eyebrow="07 · Certifications"
+        title="Certifications"
+        lead="Courses and certifications supporting my growth."
+      />
+    </div>
+
+    <ul class="certifications__grid" appScrollReveal>
+      @for (cert of profile.certifications; track cert.name) {
+        <li class="card certifications__card">
+          <span class="certifications__icon" aria-hidden="true">
+            <app-icon name="graduation-cap" [size]="20" />
+          </span>
+          <div class="certifications__body">
+            <h3 class="certifications__name">{{ cert.name }}</h3>
+            <p class="certifications__meta">
+              {{ cert.issuer }} <span class="certifications__sep" aria-hidden="true">&middot;</span>
+              <span class="certifications__year">{{ cert.year }}</span>
+            </p>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

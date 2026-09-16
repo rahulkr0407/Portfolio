@@ -1,0 +1,26 @@
+<section id="learning" class="section">
+  <div class="container-page">
+    <div appScrollReveal>
+      <app-section-head
+        eyebrow="04 · Learning"
+        title="Learning"
+        lead="The technologies I'm actively exploring and growing in."
+      />
+    </div>
+
+    <div class="learning__grid">
+      @for (topic of profile.learning; track topic.name) {
+        <div class="card learning__card" appScrollReveal>
+          <div class="learning__card-top">
+            <span class="learning__icon" aria-hidden="true">
+              <app-icon [name]="topic.icon" [size]="22" />
+            </span>
+            <span class="learning__pill">Learning</span>
+          </div>
+          <h3 class="learning__title">{{ topic.name }}</h3>
+          <p class="learning__focus">{{ topic.focus }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

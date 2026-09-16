@@ -61,13 +61,25 @@ export interface QuickFact {
   value: string;
 }
 
+export interface LearningTopic {
+  icon: IconName;
+  name: string;
+  focus: string;
+}
+
+export interface CertificationEntry {
+  name: string;
+  issuer: string;
+  year: string;
+}
+
 export const profile = {
   name: 'Rahul Kumar',
   title: 'Frontend Developer',
   greeting: "Hi, I'm",
   intro:
     'Frontend developer with enterprise experience building web applications at TCS. ' +
-    'Currently building cloud-deployed, AI-integrated platforms using Angular, Python, and Docker.',
+    'Currently building cloud-deployed, AI-powered platforms using Angular, Python, and Docker.',
   roles: ['Angular & TypeScript', 'Python & FastAPI', 'Full-Stack Development', 'Docker & CI/CD'],
   availability: 'Open to opportunities',
   email: 'mrahul2572002@gmail.com',
@@ -91,14 +103,15 @@ export const profile = {
     { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
+    { id: 'learning', label: 'Learning' },
     { id: 'projects', label: 'Projects' },
     { id: 'education', label: 'Education' },
     { id: 'contact', label: 'Contact' },
   ] as NavLink[],
   about: {
     paragraphs: [
-      'Software Engineer at Tata Consultancy Services, working on enterprise applications with Angular, TypeScript, and REST API integration. Experienced with production debugging, Git-based collaboration, and delivering features in an Agile environment.',
-      'Building full-stack applications with Python/FastAPI, MongoDB, Docker, and AI integrations. Currently focused on cloud deployment, automation, and DevOps practices through projects like CivicLens AI.',
+      'Software Engineer at Tata Consultancy Services, working on enterprise applications with Angular, TypeScript, and REST API integration. Experienced in production debugging, Git-based collaboration, and shipping features in an Agile environment.',
+      'Building full-stack applications with Python/FastAPI, MongoDB, Docker, and AI-powered features. Currently focused on cloud deployment, automation, and DevOps practices through hands-on projects such as CivicLens AI.',
     ],
     coreTech: ['Angular', 'TypeScript', 'Python', 'FastAPI', 'Docker', 'MongoDB'],
     facts: [
@@ -119,7 +132,7 @@ export const profile = {
         'Develop and maintain enterprise application features using Angular and TypeScript.',
         'Integrate frontend modules with backend REST APIs and manage API responses, authentication flows, and error handling.',
         'Debug and resolve production issues, contributing to application stability and reliable releases.',
-        'Use Git for version control and collaborate with backend developers and product teams in an Agile/Scrum environment.',
+        'Use Git for version control and collaborate with backend developers and product teams in an Agile/Scrum workflow.',
       ],
     },
   ] as Experience[],
@@ -129,8 +142,38 @@ export const profile = {
     { icon: 'database', category: 'Backend & APIs', items: ['FastAPI', 'REST APIs', 'Pydantic', 'Node.js', 'Swagger/OpenAPI'] },
     { icon: 'cloud', category: 'Cloud / DevOps', items: ['Docker', 'Git/GitHub', 'Vercel', 'Render', 'CI/CD'] },
     { icon: 'shield', category: 'Security', items: ['JWT', 'OAuth 2.0', 'Argon2', 'SHA-256'] },
+    { icon: 'database', category: 'Data & ML', items: ['numpy', 'pandas', 'matplotlib'] },
     { icon: 'brain', category: 'AI', items: ['Google Gemini', 'Prompt Engineering', 'AI Verification'] },
   ] as SkillCategory[],
+  learning: [
+    {
+      icon: 'brain',
+      name: 'AI & Machine Learning',
+      focus: 'LLMs, prompt engineering, scikit-learn',
+    },
+    {
+      icon: 'database',
+      name: 'Hadoop & Big Data',
+      focus: 'HDFS, MapReduce, Spark',
+    },
+    {
+      icon: 'cloud',
+      name: 'DevOps',
+      focus: 'Docker, Kubernetes, CI/CD',
+    },
+  ] as LearningTopic[],
+  certifications: [
+    {
+      name: 'Your Certification Name',
+      issuer: 'Issuer / Platform',
+      year: 'YYYY',
+    },
+    {
+      name: 'Your Second Certification',
+      issuer: 'Issuer / Platform',
+      year: 'YYYY',
+    },
+  ] as CertificationEntry[],
   education: [
     {
       level: 'Matriculation',
@@ -157,7 +200,7 @@ export const profile = {
   projects: [
     {
       title: 'CivicLens AI',
-      tagline: 'Full-Stack AI Civic Information Platform',
+      tagline: 'Full-Stack AI-Powered Civic Information Platform',
       featured: true,
       bullets: [
         'Building a platform that provides neutral, age-appropriate explanations of Indian civic topics using Angular, FastAPI, MongoDB, and Google Gemini.',

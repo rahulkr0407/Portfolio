@@ -2,9 +2,9 @@
   <div class="container-page">
     <div appScrollReveal>
       <app-section-head
-        eyebrow="06 · Contact"
+        eyebrow="08 · Contact"
         title="Let's start a conversation"
-        lead="Whether you have a role in mind, a project question, or just want to connect — my inbox is always open."
+        lead="Whether you have a role in mind, a project question, or just want to connect — my inbox is open."
       />
     </div>
 
@@ -33,6 +33,73 @@
         <span class="contact__value">{{ profile.location }}</span>
       </div>
     </div>
+
+    <form class="card contact__form" appScrollReveal (submit)="onSubmit($event)" novalidate>
+      <div class="contact__form-head">
+        <h3 class="contact__form-title">Send me a message</h3>
+        <p class="contact__form-sub">I'll get back to you as soon as possible.</p>
+      </div>
+
+      <div class="contact__field">
+        <label class="contact__field-label" for="contact-name">Name</label>
+        <input
+          class="contact__input"
+          id="contact-name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          required
+        />
+      </div>
+
+      <div class="contact__field">
+        <label class="contact__field-label" for="contact-email">Email</label>
+        <input
+          class="contact__input"
+          id="contact-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="contact__field">
+        <label class="contact__field-label" for="contact-message">Message</label>
+        <textarea
+          class="contact__input contact__input--area"
+          id="contact-message"
+          name="message"
+          rows="5"
+          required
+        ></textarea>
+      </div>
+
+      <p class="contact__hp" aria-hidden="true">
+        <input name="website" type="text" tabindex="-1" autocomplete="off" />
+      </p>
+
+      <div class="contact__form-foot">
+        <button type="submit" class="btn btn--primary" [disabled]="formStatus() === 'sending'">
+          @if (formStatus() === 'sending') {
+            Sending…
+          } @else {
+            <app-icon name="mail" [size]="18" />
+            Send message
+          }
+        </button>
+
+        @if (formStatus() === 'sent') {
+          <p class="contact__form-note contact__form-note--ok">
+            Thanks — your message is on its way!
+          </p>
+        } @else if (formStatus() === 'error') {
+          <p class="contact__form-note contact__form-note--err">
+            Something went wrong — please email me directly instead.
+          </p>
+        }
+      </div>
+    </form>
 
     <div class="contact__socials" appScrollReveal>
       @for (social of profile.socials; track social.href) {
