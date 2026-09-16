@@ -41,6 +41,10 @@ export class ThemeService {
     const dark = ThemeService.matchesDark(mode);
     document.documentElement.classList.toggle('dark', dark);
     document.documentElement.setAttribute('data-theme', mode);
+    const metaTheme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', dark ? '#15161c' : '#f6f6f8');
+    }
   }
 
   private static readMode(): ThemeMode {

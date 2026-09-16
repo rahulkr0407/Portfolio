@@ -13,12 +13,17 @@
 .marquee__track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 32s linear infinite;
 }
 
-.marquee:hover .marquee__track,
-.marquee:focus-within .marquee__track {
-  animation-play-state: paused;
+@media (min-width: 40rem) {
+  .marquee__track {
+    animation: marquee-scroll 32s linear infinite;
+  }
+
+  .marquee:hover .marquee__track,
+  .marquee:focus-within .marquee__track {
+    animation-play-state: paused;
+  }
 }
 
 .marquee--static .marquee__track {

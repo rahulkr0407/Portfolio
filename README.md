@@ -1,59 +1,53 @@
-# Portfolio
+# Portfolio — Rahul Kumar
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.2.
+Personal portfolio built with **Angular 20** (standalone components, signals).
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **CV-aligned content** — hero, about, experience, projects, skills, education, and contact sections driven by a single typed data source (`src/app/core/data/profile.ts`).
+- **AgenticChat AI assistant** — embedded chat widget (`public/widget.js`) preconfigured with a knowledge base covering the portfolio, opportunity prompts, and saved topics.
+- **Theme system** — light / dark / system modes with `theme-color` meta tag kept in sync.
+- **Mobile-first responsive layout** — 375px/390px-safe, with a fixed navbar that stays exactly 64px tall (no oversized layers), a slide-in mobile menu, and a frosted-glass navbar on desktop.
+- **Accessibility** — skip link, scroll lock on modal/menu, Escape-to-close, auto-close on resize, ARIA labels.
+- **Motion** — scroll reveal animations, count-up stats, marquee, and scroll progress bar, all respecting `prefers-reduced-motion`.
+- **Case-study modal** — project details without leaving the page.
+- **Fast hero image** — `srcset`/`sizes` with 320w/640w JPGs.
 
-```bash
-ng serve
-```
+## Tech stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 20.2 (standalone, signals, routing-free single page)
+- Tailwind CSS v4 (design tokens only) + hand-written BEM CSS
+- TypeScript, ESLint, Karma + Jasmine
 
-## Code scaffolding
+## Getting started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Prerequisites: Node.js and the Angular CLI.
 
 ```bash
-ng build
+npm install
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Open `http://localhost:4200/`.
 
-## Running unit tests
+## Scripts
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+| Command        | Description                          |
+| -------------- | ------------------------------------ |
+| `npm start`    | Run the dev server on `:4200`        |
+| `npm run build`| Production build to `dist/`          |
+| `npm run test` | Unit tests (Karma + Jasmine)          |
+| `npm run lint` | ESLint check                         |
+| `npm run watch`| Dev build with watch mode            |
 
-```bash
-ng test
+## Project structure
+
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+src/
+  app/
+    features/       hero, about, experience, projects, skills, education, contact
+    shared/         navbar, scroll-progress, marquee, modal, count-up, icons, footer
+    core/           services (theme) and data (profile)
+  styles.css        global CSS variables, tokens, and base rules
+public/             AgenticChat widget engine (widget.js/widget.css) and static assets
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

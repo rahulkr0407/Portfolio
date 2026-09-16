@@ -51,6 +51,16 @@
       </app-button>
     </div>
 
+    <div class="contact__chat-prompt" appScrollReveal>
+      <div class="contact__chat-copy">
+        <span class="contact__icon" aria-hidden="true">&#10024;</span>
+        <p>Have a quick question? Ask <strong>RK</strong> &#8212; my AI assistant.</p>
+      </div>
+      <button (click)="openChat()" class="btn btn--outline">
+        Ask RK anything <app-icon name="arrow-right" [size]="18" />
+      </button>
+    </div>
+
     <div class="card contact__resume" appScrollReveal>
       <div class="contact__resume-copy">
         <h3 class="contact__resume-title">Want the full picture?</h3>

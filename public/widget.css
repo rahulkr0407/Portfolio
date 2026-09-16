@@ -1,0 +1,443 @@
+/**
+ * AgenticChat Widget — Styles
+ * Customize only the CSS variables inside :root (auto-injected by widget.js).
+ * All other classes use those variables — no hex codes to hunt down.
+ *
+ * AgenticChat Widget v1.0 · MIT License
+ */
+
+/* ── Trigger button (floating bubble) ── */
+.aw-trigger {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--aw-brand-lt), var(--aw-brand-dk));
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.4), 0 0 0 0 var(--aw-brand);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aw-trigger:hover {
+  transform: translateY(-4px) scale(1.07);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 0 6px color-mix(in srgb, var(--aw-brand) 20%, transparent);
+}
+.aw-trigger img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+/* ── Panel ── */
+.aw-panel {
+  position: fixed;
+  bottom: 98px;
+  right: 28px;
+  z-index: 9998;
+  width: 360px;
+  max-height: 580px;
+  border-radius: 20px;
+  background: var(--aw-bg);
+  border: 1px solid var(--aw-border);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.95);
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+}
+.aw-panel.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: none;
+}
+
+/* ── Chat view flex wrapper ── */
+#aw-chat-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.aw-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--aw-brand) 10%, var(--aw-bg));
+  border-bottom: 1px solid var(--aw-border);
+}
+.aw-av {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--aw-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--aw-brand) 20%, #0f172a);
+  color: var(--aw-brand);
+  font-weight: 700;
+  font-size: 14px;
+}
+.aw-av img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.aw-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--aw-text);
+  line-height: 1.2;
+}
+.aw-role {
+  font-size: 11px;
+  color: var(--aw-muted);
+}
+.aw-online {
+  color: #3cb87a;
+  font-weight: 600;
+}
+
+/* ── Header utility buttons ── */
+.aw-hbtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  color: var(--aw-muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 9px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+.aw-hbtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--aw-text);
+}
+.aw-hbtn-new {
+  background: color-mix(in srgb, var(--aw-brand) 15%, transparent);
+  border-color: color-mix(in srgb, var(--aw-brand) 30%, transparent);
+  color: var(--aw-brand);
+  font-weight: 700;
+}
+.aw-close {
+  font-size: 14px;
+  padding: 0 8px;
+}
+
+/* ── Messages ── */
+.aw-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+.aw-messages::-webkit-scrollbar { width: 4px; }
+.aw-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+.aw-msg {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  animation: awMsgIn 0.22s ease both;
+}
+.aw-user { justify-content: flex-end; }
+.aw-bot  { justify-content: flex-start; }
+
+.aw-bubble {
+  max-width: 85%;
+  padding: 9px 13px;
+  font-size: 13px;
+  line-height: 1.65;
+  border-radius: 14px;
+}
+.aw-bubble p { margin: 0 0 6px; }
+.aw-bubble p:last-child { margin: 0; }
+
+.aw-bubble-bot {
+  background: var(--aw-bot-bbl);
+  border: 1px solid var(--aw-border);
+  border-radius: 4px 14px 14px 14px;
+  color: var(--aw-text);
+}
+.aw-bubble-user {
+  background: var(--aw-user-bbl);
+  border-radius: 14px 4px 14px 14px;
+  color: var(--aw-text);
+}
+.aw-bubble strong { color: var(--aw-brand); }
+
+/* Avatar next to bot messages */
+.aw-msg-av {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+/* ── Typing indicator ── */
+.aw-typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--aw-bot-bbl);
+  border: 1px solid var(--aw-border);
+  border-radius: 4px 14px 14px 14px;
+}
+.aw-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--aw-brand);
+  opacity: 0.5;
+  animation: awTypingDot 1.2s ease-in-out infinite;
+}
+.aw-typing span:nth-child(2) { animation-delay: 0.2s; }
+.aw-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Chips (quick replies) ── */
+.aw-chips {
+  padding: 0 10px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.aw-chip {
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--aw-border);
+  color: var(--aw-muted);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  font-family: inherit;
+}
+.aw-chip:hover {
+  border-color: var(--aw-brand);
+  color: var(--aw-brand);
+  background: color-mix(in srgb, var(--aw-brand) 8%, transparent);
+}
+
+/* Optional persistent action toolbar (hidden when empty via [hidden]) */
+.aw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 10px;
+  border-top: 1px solid var(--aw-border);
+  background: color-mix(in srgb, var(--aw-bg) 92%, #fff);
+}
+.aw-actions[hidden],
+.aw-actions:empty {
+  display: none !important;
+  padding: 0;
+  border: 0;
+}
+.aw-action {
+  appearance: none;
+  border: 1px solid var(--aw-border);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.05);
+  color: var(--aw-muted);
+  cursor: pointer;
+  font: 600 11px/1.2 inherit;
+  padding: 7px 10px;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.aw-action:hover,
+.aw-action:focus-visible {
+  background: color-mix(in srgb, var(--aw-brand) 12%, transparent);
+  border-color: var(--aw-brand);
+  color: var(--aw-text);
+}
+
+/* ── Input row ── */
+.aw-input-row {
+  padding: 10px;
+  border-top: 1px solid var(--aw-border);
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.aw-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--aw-border);
+  border-radius: 100px;
+  padding: 8px 15px;
+  color: var(--aw-text);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+.aw-input:focus { border-color: var(--aw-brand); }
+.aw-input::placeholder { color: var(--aw-muted); }
+
+.aw-send {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--aw-brand-lt), var(--aw-brand-dk));
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s, box-shadow 0.2s;
+  line-height: 1;
+}
+.aw-send:hover {
+  transform: scale(1.12);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--aw-brand) 50%, transparent);
+}
+
+/* ── Footer note ── */
+.aw-footer {
+  text-align: center;
+  font-size: 10px;
+  color: var(--aw-muted);
+  padding: 3px 12px 8px;
+  opacity: 0.7;
+}
+
+/* ── Lead capture form ── */
+.aw-lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.aw-lead-form input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--aw-border);
+  border-radius: 8px;
+  padding: 7px 11px;
+  color: var(--aw-text);
+  font-size: 12.5px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.aw-lead-form input:focus { border-color: var(--aw-brand); }
+.aw-lead-form input::placeholder { color: var(--aw-muted); }
+.aw-lead-form button {
+  background: linear-gradient(135deg, var(--aw-brand-lt), var(--aw-brand-dk));
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s;
+}
+.aw-lead-form button:hover { transform: scale(1.02); }
+
+/* ── History view ── */
+.aw-hist-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.aw-hist-item:hover { border-color: var(--aw-border); background: rgba(255,255,255,0.05); }
+.aw-hist-active { border-color: var(--aw-brand) !important; }
+.aw-hist-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--aw-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.aw-hist-meta {
+  font-size: 10.5px;
+  color: var(--aw-muted);
+  margin-top: 2px;
+}
+.aw-hist-del {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: transparent;
+  padding: 4px 6px;
+  border-radius: 5px;
+  transition: background 0.2s, color 0.2s;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.aw-hist-item:hover .aw-hist-del { color: var(--aw-muted); }
+.aw-hist-del:hover { background: rgba(224, 85, 85, 0.12); color: #e05555 !important; }
+
+/* ── Animations ── */
+@keyframes awMsgIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes awTypingDot {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40%           { opacity: 1;   transform: scale(1.15); }
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .aw-panel {
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    max-height: 88vh;
+    border-radius: 20px 20px 0 0;
+  }
+  .aw-trigger {
+    bottom: 20px;
+    right: 20px;
+  }
+}

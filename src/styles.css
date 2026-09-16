@@ -104,6 +104,14 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5.5rem;
+    background-color: var(--surface);
+    overflow-x: clip;
+  }
+
+  @supports not (overflow: clip) {
+    html {
+      overflow-x: hidden;
+    }
   }
 
   body {
@@ -112,6 +120,9 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
     transition: background-color 0.35s ease, color 0.35s ease;
   }
 
@@ -160,6 +171,12 @@
 
   .section {
     padding-block: 5rem;
+  }
+
+  @media (max-width: 40rem) {
+    .section {
+      padding-block: 3.25rem;
+    }
   }
 
   .section-head {
@@ -229,6 +246,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
+    min-height: 2.75rem;
     padding: 0.82rem 1.4rem;
     border: 1px solid transparent;
     border-radius: 0.7rem;
@@ -295,7 +313,8 @@
   }
 
   .btn--sm {
-    padding: 0.55rem 1rem;
+    min-height: 2.75rem;
+    padding: 0.7rem 1.05rem;
     font-size: 0.85rem;
     border-radius: 0.6rem;
   }
@@ -341,7 +360,6 @@ body.modal-open {
     transition:
       opacity 0.7s ease,
       transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
   }
 
   .js-reveal.is-visible {

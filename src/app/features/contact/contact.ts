@@ -15,4 +15,8 @@ import { SectionHead } from '../../shared/section-head/section-head';
 export class Contact {
   protected readonly profile = profile;
   protected readonly telHref = 'tel:+916299566895';
+
+  protected openChat(): void {
+    document.getElementById('aw-trigger')?.click();
+  }
 }

@@ -16,6 +16,7 @@
   flex-direction: column;
   width: min(680px, 100%);
   max-height: min(85vh, 880px);
+  max-height: min(85dvh, 880px);
   background-color: var(--surface-raised);
   border: 1px solid var(--line);
   border-radius: 1.25rem;
@@ -70,8 +71,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 0.65rem;
   border: 1px solid var(--line);
   background-color: var(--surface);

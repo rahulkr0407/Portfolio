@@ -33,6 +33,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
+  padding: 0.65rem 0.4rem;
+  margin: -0.65rem -0.4rem;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 500;

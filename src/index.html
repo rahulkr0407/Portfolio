@@ -6,6 +6,7 @@
   <meta name="description" content="Portfolio of Rahul Kumar, Frontend Developer specializing in Angular and TypeScript. Systems Engineer at TCS building enterprise web applications; also building full-stack AI platforms with Python, FastAPI, Docker, and MongoDB.">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f6f8">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,15 +15,24 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet">
 
+  <link rel="stylesheet" href="widget.css" />
+
   <script>
     (function () {
       try {
         var stored = localStorage.getItem('theme');
-        if (stored === 'dark' || (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        var dark =
+          stored === 'dark' ||
+          (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) {
           document.documentElement.classList.add('dark');
         }
         if (stored === 'dark' || stored === 'light') {
           document.documentElement.setAttribute('data-theme', stored);
+        }
+        var metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) {
+          metaTheme.setAttribute('content', dark ? '#15161c' : '#f6f6f8');
         }
       } catch (e) {}
     })();
@@ -30,5 +40,133 @@
 </head>
 <body>
   <app-root></app-root>
+
+  <script>
+    window.AgenticChatConfig = {
+      name: 'RK',
+      role: "Rahul's Assistant",
+      avatar: '',
+      brand: '#7c6cf6',
+      brandDark: '#5c4ce0',
+      brandLight: '#9b8cf6',
+      bg: '#0f172a',
+      proactiveSec: 10,
+      leadNudgeAfter: 0,
+      footerNote: "RK is Rahul's assistant — for professional inquiries, reach out via email.",
+      quickActions: [
+        { label: 'View Projects', query: 'Tell me about your projects' },
+        { label: 'Resume', url: '/Rahul_Kumar_Resume.pdf' },
+        { label: 'Contact', url: '#contact' }
+      ]
+    };
+
+    window.KB = {
+      greeting: {
+        patterns: [/^(hi|hello|hey|good\s*(morning|afternoon|evening)|howdy|sup|yo)/i],
+        handler: function () {
+          var h = new Date().getHours();
+          var tod = h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening';
+          return 'Good ' + tod + '! I\u2019m **RK**, Rahul\u2019s personal assistant. I can tell you about his experience, projects, skills, or how to get in touch. What would you like to know?';
+        }
+      },
+
+      about: {
+        patterns: [/who are you|about (you|rahul)|tell me about yourself|bio|background|what do you do|who is rahul/i],
+        responses: [
+          'I\u2019m **Rahul Kumar** \u2014 a Frontend Developer and Systems Engineer at **Tata Consultancy Services (TCS)**. I build enterprise web applications with Angular and TypeScript, and full-stack AI platforms with Python, FastAPI, Docker, and MongoDB. Based in **Noida, India** and open to relocation.',
+          'Rahul is a Frontend Developer specializing in **Angular 20 and TypeScript**, currently working at **TCS** as a Systems Engineer. He also builds full-stack applications with **Python, FastAPI, MongoDB, and Docker** \u2014 including AI-integrated platforms deployed on the cloud.'
+        ],
+        chips: ['Experience', 'Skills', 'Projects', 'Contact']
+      },
+
+      experience: {
+        patterns: [/experience|work|job|role|position|career|tcs|tata|employed|working/i],
+        responses: [
+          'Rahul is currently a **Systems Engineer at Tata Consultancy Services (TCS)** since **April 2025**. His day-to-day includes:\n\n\u2022 Building and maintaining enterprise features with **Angular and TypeScript**\n\u2022 Integrating frontend modules with **REST APIs** (auth flows, error handling)\n\u2022 Debugging **production issues** and contributing to stable releases\n\u2022 Collaborating with backend teams in an **Agile/Scrum** environment\n\nHe also builds personal projects with Python/FastAPI and Docker.',
+          'At **TCS**, Rahul works as a **Systems Engineer** (April 2025 \u2014 Present). He develops enterprise Angular applications, integrates REST APIs, handles production debugging, and works cross-functionally in Agile sprints.'
+        ],
+        chips: ['Skills', 'Projects', 'Referrals']
+      },
+
+      referrals: {
+        patterns: [/referral|hiring|opportunity|open to|recruit|job opening|can he|is he available|availab|connect me/i],
+        responses: [
+          'Rahul is **open to opportunities**! He\u2019s based in **Noida, UP, India** and is open to relocation. You can reach him directly:\n\n\u2019 Email: mrahul2572002@gmail.com\n\u2019 LinkedIn: linkedin.com/in/rahulkr0407/\n\u2019 GitHub: github.com/rahulkr0407\n\nHe\u2019d be happy to connect and discuss opportunities.',
+          'Rahul is actively open to new roles and would welcome a referral. Reach out via **email** (mrahul2572002@gmail.com) or connect on **LinkedIn** (linkedin.com/in/rahulkr0407/). He\u2019s open to relocation as well.'
+        ],
+        chips: ['Contact', 'Resume', 'Skills']
+      },
+
+      projects: {
+        patterns: [/project|portfolio|what.*(built|made|create)|work|app|application/i],
+        responses: [
+          'Rahul has built several notable projects:\n\n**1. CivicLens AI** (Featured)\nFull-stack AI civic information platform built with **Angular 20, FastAPI, MongoDB, Google Gemini, and Docker**. 18+ API endpoints, JWT/OAuth authentication, AI verification layer, deployed on Render + Vercel.\n\n**2. Shrtx** \u2014 Frontend URL Shortener & Analytics Platform\n\n**3. COVID-19 Vaccine Slot Finder** \u2014 Real-time vaccine availability app\n\n**4. McDonald\u2019s Market Segmentation** \u2014 Data-driven consumer analysis with K-Means clustering\n\nWant details on any specific project?',
+          'Rahul\u2019s portfolio includes **CivicLens AI** (Angular 20 + FastAPI + Docker + AI), **Shrtx** (URL shortener), a **COVID-19 Vaccine Slot Finder**, and a **McDonald\u2019s Market Segmentation** analysis. Ask me about any of them!'
+        ],
+        chips: ['CivicLens AI', 'Other projects', 'Tech stack']
+      },
+
+      civiclens: {
+        patterns: [/civiclens|civic.?lens|ai.?platform|civic.*info/i],
+        responses: [
+          '**CivicLens AI** is Rahul\u2019s flagship project \u2014 a full-stack AI platform providing neutral, age-appropriate explanations of Indian civic topics.\n\n**Tech stack:** Angular 20, TypeScript, Python, FastAPI, MongoDB, Google Gemini, Docker\n\n**Key highlights:**\n\u2022 18+ REST API endpoints with Pydantic validation\n\u2022 JWT/OAuth 2.0 authentication with Argon2 hashing\n\u2022 AI verification layer with retry/backoff and caching\n\u2022 Angular 20 SPA with 12+ routed pages, RxJS reactive auth\n\u2022 Fully containerized with Docker, deployed on Render + Vercel'
+        ],
+        chips: ['Other projects', 'Skills', 'Contact']
+      },
+
+      skills: {
+        patterns: [/skill|tech|technologies|stack|languages?|framework|tools|what do you know|proficien|expertise/i],
+        responses: [
+          'Rahul\u2019s technical skills span across several domains:\n\n**Frontend:** Angular 20, React, HTML5, CSS, Tailwind CSS, RxJS\n\n**Languages:** Python, JavaScript, TypeScript, C++, C, Java\n\n**Backend & APIs:** FastAPI, REST APIs, Pydantic, Node.js, Swagger\n\n**Cloud / DevOps:** Docker, Git/GitHub, Vercel, Render, CI/CD\n\n**Security:** JWT, OAuth 2.0, Argon2, SHA-256\n\n**AI:** Google Gemini, Prompt Engineering, AI Verification',
+          'Rahul is strong in **Angular 20, TypeScript, Python, FastAPI, Docker, and MongoDB**. His frontend expertise includes React, Tailwind CSS, and RxJS. He also knows CI/CD, JWT/OAuth security, and AI integration with Google Gemini.'
+        ],
+        chips: ['Experience', 'Projects', 'Education']
+      },
+
+      education: {
+        patterns: [/education|university|degree|b\.?tech|college|school|qualification|grade|cgpa|study/i],
+        responses: [
+          'Rahul holds a **Bachelor of Technology in Computer Science & Engineering** from **Lovely Professional University** (2020\u20142024), with a **CGPA of 7.32**.\n\n\u2022 **Matriculation** \u2014 Jawahar Navodaya Vidyalaya (2018) \u2014 **85%**\n\u2022 **Intermediate** \u2014 VJ Sachdeva International School (2020) \u2014 **65%**\n\u2022 **B.Tech CSE** \u2014 Lovely Professional University (2020\u20142024) \u2014 **CGPA 7.32**'
+        ],
+        chips: ['Skills', 'Experience', 'Contact']
+      },
+
+      contact: {
+        patterns: [/contact|email|phone|reach|connect|linkedin|github|how to|get in touch|talk to|speak to/i],
+        responses: [
+          'You can reach Rahul through:\n\n\u2019 **Email:** mrahul2572002@gmail.com\n\u2019 **Phone:** +91 62995 66895\n\u2019 **LinkedIn:** linkedin.com/in/rahulkr0407/\n\u2019 **GitHub:** github.com/rahulkr0407\n\nHe\u2019s based in **Noida, UP, India** and open to relocation. You can also use the contact section on this page!',
+          'Rahul is available on **email** (mrahul2572002@gmail.com), **phone** (+91 62995 66895), **LinkedIn**, and **GitHub**. Feel free to reach out!'
+        ],
+        chips: ['Resume', 'Referrals', 'Projects']
+      },
+
+      resume: {
+        patterns: [/resume|cv|download|portfolio pdf|hire|document/i],
+        responses: [
+          'You can download Rahul\u2019s resume directly here: **/Rahul_Kumar_Resume.pdf**\n\nIt includes his full experience, education, projects, and technical background in one page.',
+          'Rahul\u2019s resume is available for download. Click the **Resume** button in the quick actions below, or visit the Contact section on this page.'
+        ],
+        chips: ['Contact', 'Projects', 'Skills']
+      },
+
+      farewell: {
+        patterns: [/bye|goodbye|thanks|thank you|that'?s all|see you|have a good|cheers/i],
+        responses: [
+          'You\u2019re welcome! Feel free to come back anytime. Have a great day! \ud83d\udc4b',
+          'Happy to help! Don\u2019t hesitate to reach out to Rahul directly if you have more questions. Take care! \ud83d\udc4b'
+        ]
+      },
+
+      fallback: {
+        responses: [
+          'That\u2019s a great question! I may not have the exact answer, but you can reach Rahul directly at **mrahul2572002@gmail.com** for specifics. Want me to tell you about his experience, projects, or skills instead?',
+          'Hmm, I\u2019m not 100% sure about that. Rahul would be the best person to answer \u2014 try reaching out via email or LinkedIn. Want to know about his work or skills instead?',
+          'I don\u2019t have enough info on that, but Rahul would be happy to discuss it! You can contact him via **email** or check his **GitHub** for his latest work.'
+        ],
+        chips: ['About Rahul', 'Experience', 'Projects', 'Contact']
+      }
+    };
+  </script>
+  <script src="widget.js" defer></script>
 </body>
 </html>

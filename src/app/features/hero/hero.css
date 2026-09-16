@@ -29,21 +29,33 @@
   border-radius: 999px;
   filter: blur(70px);
   opacity: 0.5;
-  will-change: transform;
 }
 
 .hero__aurora--a {
   top: -10rem;
   right: -6rem;
   background-image: radial-gradient(closest-side, color-mix(in oklab, var(--accent) 30%, transparent), transparent);
-  animation: aurora-drift 18s ease-in-out infinite alternate;
 }
 
 .hero__aurora--b {
   bottom: -12rem;
   left: -8rem;
   background-image: radial-gradient(closest-side, color-mix(in oklab, var(--accent-2) 26%, transparent), transparent);
-  animation: aurora-drift 22s ease-in-out infinite alternate-reverse;
+}
+
+@media (min-width: 40rem) {
+  .hero__aurora--a {
+    animation: aurora-drift 18s ease-in-out infinite alternate;
+  }
+
+  .hero__aurora--b {
+    animation: aurora-drift 22s ease-in-out infinite alternate-reverse;
+  }
+
+  .hero__photo-wrap,
+  .hero__glow {
+    animation: var(--animate-float);
+  }
 }
 
 @keyframes aurora-drift {
@@ -195,7 +207,6 @@
   padding: 3px;
   border-radius: 1.6rem;
   background-image: linear-gradient(145deg, var(--accent), transparent 38%, var(--accent-2) 90%);
-  animation: var(--animate-float);
 }
 
 .hero__glow {
@@ -205,7 +216,6 @@
   filter: blur(50px);
   opacity: 0.45;
   border-radius: inherit;
-  animation: var(--animate-float);
   z-index: 0;
 }
 

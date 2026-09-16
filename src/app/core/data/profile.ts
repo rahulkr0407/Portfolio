@@ -80,6 +80,8 @@ export const profile = {
   ] as SocialLink[],
   photo: {
     src: 'animated_portfolio_image.png',
+    srcset: 'animated_portfolio_image-320.jpg 320w, animated_portfolio_image-640.jpg 640w',
+    sizes: '(min-width: 48rem) 320px, 72vw',
     alt: 'Portrait of Rahul Kumar',
     width: 1008,
     height: 1044,

@@ -84,6 +84,7 @@ a.contact__card:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.5rem 0.25rem;
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--ink-muted);
@@ -91,6 +92,35 @@ a.contact__card:hover {
 }
 
 .contact__social:hover {
+  color: var(--accent);
+}
+
+.contact__chat-prompt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 1.5rem 2rem;
+  border: 1px dashed color-mix(in oklab, var(--accent) 35%, var(--line));
+  border-radius: 1rem;
+  background-color: var(--surface-raised);
+}
+
+.contact__chat-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.contact__chat-prompt p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+
+.contact__chat-prompt strong {
   color: var(--accent);
 }
 

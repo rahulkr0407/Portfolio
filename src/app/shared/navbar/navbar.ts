@@ -30,9 +30,15 @@ export class Navbar implements AfterViewInit, OnDestroy {
   protected readonly themeIcons: IconName[] = ['monitor', 'moon', 'sun'];
 
   private spy: IntersectionObserver | undefined;
+  private readonly desktopQuery = window.matchMedia('(min-width: 64rem)');
 
   constructor() {
     this.syncScroll();
+    this.desktopQuery.addEventListener('change', (e) => {
+      if (e.matches && this.menuOpen()) {
+        this.closeMenu();
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -41,6 +47,7 @@ export class Navbar implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.spy?.disconnect();
+    document.body.classList.remove('modal-open');
   }
 
   @HostListener('window:scroll')
@@ -49,6 +56,11 @@ export class Navbar implements AfterViewInit, OnDestroy {
     if (this.scrolled() !== next) {
       this.scrolled.set(next);
     }
+  }
+
+  @HostListener('document:keydown.escape')
+  protected onEscape(): void {
+    this.closeMenu();
   }
 
   private initScrollSpy(): IntersectionObserver | undefined {
@@ -74,11 +86,14 @@ export class Navbar implements AfterViewInit, OnDestroy {
   }
 
   protected toggleMenu(): void {
-    this.menuOpen.set(!this.menuOpen());
+    const open = !this.menuOpen();
+    this.menuOpen.set(open);
+    document.body.classList.toggle('modal-open', open);
   }
 
   protected closeMenu(): void {
     this.menuOpen.set(false);
+    document.body.classList.remove('modal-open');
   }
 
   protected cycleTheme(): void {
