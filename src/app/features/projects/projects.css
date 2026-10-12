@@ -2,26 +2,48 @@
   display: block;
 }
 
-.projects__grid {
+.mission__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 @media (min-width: 48rem) {
-  .projects__grid {
+  .mission__grid {
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
   }
 }
 
-.projects__card {
-  display: flex;
-  flex-direction: column;
+.mission {
+  position: relative;
 }
 
-.projects__card::after {
+.mission--primary {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: var(--surface-raised);
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--line));
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 30px 70px -35px color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+.mission--card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent) 4%, var(--surface-raised)),
+    var(--surface-raised)
+  );
+}
+
+.mission--card::after {
   content: '';
   position: absolute;
   left: 1.25rem;
@@ -33,146 +55,202 @@
   transition: opacity 0.35s ease;
 }
 
-.projects__card:hover::after {
+.mission--card:hover::after {
   opacity: 1;
 }
 
-.projects__card:hover .projects__icon {
-  transform: scale(1.08);
+.mission--card:hover {
+  border-color: color-mix(in oklab, var(--accent) 40%, var(--line));
 }
 
-.projects__card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.4rem;
-}
-
-.projects__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.8rem;
-  background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
-  color: var(--on-accent);
-  box-shadow: 0 10px 20px -12px var(--accent);
-  transition: transform 0.3s ease;
-}
-
-.projects__index {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--ink-muted);
-}
-
-.projects__title {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.projects__bullets {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin: 1.25rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.projects__bullet {
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: var(--ink-soft);
-}
-
-.projects__bullet app-icon {
-  margin-top: 0.25rem;
-  flex-shrink: 0;
-  color: var(--accent);
-}
-
-.projects__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 1.5rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.projects__featured {
-  position: relative;
-  margin-top: 3rem;
-  padding: 2rem;
-  background-color: var(--surface-raised);
-  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--line));
-  border-radius: 1.25rem;
-  overflow: hidden;
-  box-shadow: 0 30px 70px -35px color-mix(in oklab, var(--accent) 60%, transparent);
-}
-
-.projects__featured::before {
-  content: '';
+.mission__glow {
   position: absolute;
   top: -8rem;
   right: -8rem;
   width: 20rem;
   height: 20rem;
   border-radius: 999px;
-  background-image: radial-gradient(closest-side, color-mix(in oklab, var(--accent) 14%, transparent), transparent);
+  background-image: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--accent) 14%, transparent),
+    transparent
+  );
   pointer-events: none;
 }
 
-.projects__featured-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
+.mission__scan {
+  top: 55%;
+  opacity: 0.5;
 }
 
-.projects__featured-chip {
+.mission__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mission__id {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.mission__id-num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   color: var(--accent);
 }
 
-.projects__title--lg {
-  margin-top: 1rem;
-  font-size: 1.7rem;
+.mission__id-num--sm {
+  color: var(--ink-muted);
 }
 
-.projects__tagline {
+.mission__id-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.55rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--line));
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.mission__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+}
+
+.mission__status-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background-color: var(--accent);
+  box-shadow: 0 0 8px -1px var(--glow);
+}
+
+.mission__title {
+  margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.mission__title--card {
+  margin-top: 1.1rem;
+  font-size: 1.25rem;
+}
+
+.mission__tagline {
   margin-top: 0.35rem;
   font-size: 0.95rem;
   color: var(--ink-muted);
 }
 
-.projects__actions {
+.mission__briefing {
+  margin-top: 1.5rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px dashed color-mix(in oklab, var(--accent) 35%, var(--line));
+  border-radius: 0.85rem;
+  background-color: color-mix(in oklab, var(--surface-sunken) 55%, transparent);
+}
+
+.mission__briefing-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.mission__objectives {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mission__objective {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.mission__objective-mark {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.mission__loadout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.mission__loadout-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.mission__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mission__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.75rem;
 }
 
-@media (max-width: 30rem) {
-.projects__card-actions {
+.mission__card-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: 1.5rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
 }
 
-.projects__card-link {
+.mission__card-link {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -188,13 +266,14 @@
     background-color 0.2s ease;
 }
 
-.projects__card-link:hover {
+.mission__card-link:hover {
   color: var(--accent);
   border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
   background-color: var(--surface-sunken);
 }
 
-.projects__featured {
+@media (max-width: 30rem) {
+  .mission--primary {
     padding: 1.5rem;
   }
 }

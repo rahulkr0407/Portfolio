@@ -1,0 +1,20 @@
+@if (visible()) {
+  <div class="achievement" role="status" aria-live="polite">
+    <span class="achievement__icon" aria-hidden="true">
+      <app-icon name="award" [size]="22" />
+    </span>
+    <div class="achievement__copy">
+      <p class="achievement__eyebrow">Achievement unlocked</p>
+      <p class="achievement__title">Access granted</p>
+      <p class="achievement__text">You found the hidden code. Let&rsquo;s build something.</p>
+    </div>
+    <button
+      type="button"
+      class="achievement__close"
+      aria-label="Dismiss achievement"
+      (click)="dismiss()"
+    >
+      <app-icon name="x" [size]="16" />
+    </button>
+  </div>
+}

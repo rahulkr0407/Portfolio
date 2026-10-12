@@ -8,6 +8,9 @@ import {
   signal,
 } from '@angular/core';
 import { profile } from '../../core/data/profile';
+import { HudService } from '../../core/services/hud.service';
+import { PaletteService } from '../../core/services/palette.service';
+import { SoundService } from '../../core/services/sound.service';
 import { ThemeService, type ThemeMode } from '../../core/services/theme.service';
 import { Icon, type IconName } from '../icon/icon';
 
@@ -21,6 +24,9 @@ import { Icon, type IconName } from '../icon/icon';
 export class Navbar implements AfterViewInit, OnDestroy {
   protected readonly profile = profile;
   protected readonly theme = inject(ThemeService);
+  protected readonly hud = inject(HudService);
+  private readonly palette = inject(PaletteService);
+  private readonly sound = inject(SoundService);
 
   protected readonly menuOpen = signal(false);
   protected readonly scrolled = signal(false);
@@ -61,6 +67,60 @@ export class Navbar implements AfterViewInit, OnDestroy {
   @HostListener('document:keydown.escape')
   protected onEscape(): void {
     this.closeMenu();
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  protected onKeys(event: KeyboardEvent): void {
+    if (event.altKey || event.ctrlKey || event.metaKey) {
+      return;
+    }
+    const target = event.target as HTMLElement | null;
+    const tag = target?.tagName;
+    if (
+      tag === 'INPUT' ||
+      tag === 'TEXTAREA' ||
+      tag === 'SELECT' ||
+      target?.isContentEditable
+    ) {
+      return;
+    }
+    const digit = Number(event.key);
+    const count = this.profile.navLinks.length;
+    if (!Number.isInteger(digit) || digit < 1 || digit > count) {
+      return;
+    }
+    if (this.hud.introVisible() || this.palette.open() || document.querySelector('.modal__panel')) {
+      return;
+    }
+    this.closeMenu();
+    document
+      .getElementById(this.profile.navLinks[digit - 1].id)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  protected openPalette(): void {
+    this.palette.show();
+  }
+
+  protected toggleSound(): void {
+    const next = !this.hud.soundEnabled();
+    this.hud.setSoundEnabled(next);
+    if (next) {
+      this.sound.play('select');
+    }
+  }
+
+  protected locLabel(): string {
+    const index = this.profile.navLinks.findIndex((link) => link.id === this.activeId());
+    return String(index >= 0 ? index + 1 : this.profile.navLinks.length).padStart(2, '0');
+  }
+
+  protected navCountLabel(): string {
+    return String(this.profile.navLinks.length).padStart(2, '0');
+  }
+
+  protected linkIndex(index: number): string {
+    return String(index + 1).padStart(2, '0');
   }
 
   private initScrollSpy(): IntersectionObserver | undefined {

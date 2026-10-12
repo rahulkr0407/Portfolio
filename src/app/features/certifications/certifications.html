@@ -1,28 +1,30 @@
-<section id="certifications" class="section">
-  <div class="container-page">
-    <div appScrollReveal>
-      <app-section-head
-        eyebrow="07 · Certifications"
-        title="Certifications"
-        lead="Courses and certifications supporting my growth."
-      />
-    </div>
+@if (credentials().length > 0) {
+  <section id="certifications" class="section grid-bg grid-bg--fade">
+    <div class="container-page">
+      <div appScrollReveal>
+        <app-section-head
+          eyebrow="07 · Credentials"
+          title="Credentials"
+          lead="Certifications and courses supporting my continued growth."
+        />
+      </div>
 
-    <ul class="certifications__grid" appScrollReveal>
-      @for (cert of profile.certifications; track cert.name) {
-        <li class="card certifications__card">
-          <span class="certifications__icon" aria-hidden="true">
-            <app-icon name="graduation-cap" [size]="20" />
-          </span>
-          <div class="certifications__body">
-            <h3 class="certifications__name">{{ cert.name }}</h3>
-            <p class="certifications__meta">
-              {{ cert.issuer }} <span class="certifications__sep" aria-hidden="true">&middot;</span>
-              <span class="certifications__year">{{ cert.year }}</span>
-            </p>
-          </div>
-        </li>
-      }
-    </ul>
-  </div>
-</section>
+      <ul class="credentials__grid" appScrollReveal>
+        @for (cert of credentials(); track cert.name) {
+          <li class="card credentials__card hud-frame">
+            <span class="credentials__icon" aria-hidden="true">
+              <app-icon name="graduation-cap" [size]="20" />
+            </span>
+            <div class="credentials__body">
+              <h3 class="credentials__name">{{ cert.name }}</h3>
+              <p class="credentials__meta">
+                {{ cert.issuer }} <span class="credentials__sep" aria-hidden="true">&middot;</span>
+                <span class="credentials__year">{{ cert.year }}</span>
+              </p>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+}

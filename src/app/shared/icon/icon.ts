@@ -29,7 +29,16 @@ export type IconName =
   | 'layout'
   | 'building-2'
   | 'chevron-right'
-  | 'chevron-down';
+  | 'chevron-down'
+  | 'target'
+  | 'cpu'
+  | 'keyboard'
+  | 'cog'
+  | 'route'
+  | 'crosshair'
+  | 'award'
+  | 'volume'
+  | 'volume-x';
 
 @Component({
   selector: 'app-icon',

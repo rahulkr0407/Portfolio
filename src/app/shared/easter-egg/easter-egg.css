@@ -1,0 +1,105 @@
+.achievement {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 130;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  width: min(23rem, calc(100vw - 2.5rem));
+  padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 55%, var(--line));
+  border-radius: 0.9rem;
+  background-color: var(--surface-raised);
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent) 10%, var(--surface-raised)),
+    var(--surface-raised)
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 25%, transparent),
+    0 26px 60px -28px color-mix(in oklab, var(--accent) 70%, transparent);
+  animation: achievement-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.achievement__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.75rem;
+  background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  box-shadow: 0 10px 22px -12px var(--accent);
+  flex-shrink: 0;
+}
+
+.achievement__copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.achievement__eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.achievement__title {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.achievement__text {
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.achievement__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--line);
+  background-color: var(--surface);
+  color: var(--ink-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.achievement__close:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+@keyframes achievement-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement {
+    animation: none;
+  }
+}

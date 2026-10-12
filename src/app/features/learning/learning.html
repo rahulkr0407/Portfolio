@@ -2,7 +2,7 @@
   <div class="container-page">
     <div appScrollReveal>
       <app-section-head
-        eyebrow="04 · Learning"
+        eyebrow="03 · Training"
         title="Learning"
         lead="The technologies I'm actively exploring and growing in."
       />
@@ -10,7 +10,7 @@
 
     <div class="learning__grid">
       @for (topic of profile.learning; track topic.name) {
-        <div class="card learning__card" appScrollReveal>
+        <div class="card learning__card hud-frame" appScrollReveal>
           <div class="learning__card-top">
             <span class="learning__icon" aria-hidden="true">
               <app-icon [name]="topic.icon" [size]="22" />

@@ -1,0 +1,222 @@
+:host {
+  display: contents;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  background-color: var(--surface);
+  background-image:
+    radial-gradient(60% 45% at 50% 0%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 85% 100%, color-mix(in oklab, var(--accent-2) 8%, transparent), transparent 70%);
+}
+
+.intro.is-closing {
+  animation: intro-exit 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.intro__panel {
+  position: relative;
+  width: 100%;
+  max-width: 40rem;
+  padding: clamp(2rem, 6vw, 3.5rem);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background-color: color-mix(in oklab, var(--surface-raised) 88%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 22%, transparent),
+    0 40px 80px -48px var(--glow);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.intro__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.6;
+  background:
+    linear-gradient(var(--accent), var(--accent)) top left / 1.2rem 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top left / 2px 1.2rem no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top right / 1.2rem 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top right / 2px 1.2rem no-repeat,
+    linear-gradient(var(--accent-2), var(--accent-2)) bottom left / 1.2rem 2px no-repeat,
+    linear-gradient(var(--accent-2), var(--accent-2)) bottom left / 2px 1.2rem no-repeat,
+    linear-gradient(var(--accent-2), var(--accent-2)) bottom right / 1.2rem 2px no-repeat,
+    linear-gradient(var(--accent-2), var(--accent-2)) bottom right / 2px 1.2rem no-repeat;
+}
+
+.intro__badge {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--ink-muted);
+}
+
+.intro__boot {
+  display: grid;
+  gap: 0.35rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+}
+
+.intro__boot-line {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  opacity: 0;
+}
+
+.intro__boot-line.is-visible {
+  opacity: 1;
+  animation: var(--animate-boot-flicker);
+}
+
+.intro__reveal {
+  margin-top: 1.6rem;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s ease 0.05s,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+}
+
+.intro.is-closing .intro__reveal,
+.intro.is-closing .intro__boot {
+  opacity: 0;
+}
+
+.intro__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 9vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  background-image: linear-gradient(105deg, var(--accent), var(--accent-2));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.intro__role {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 2.6vw, 0.95rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.intro__slash {
+  color: var(--accent);
+}
+
+.intro__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.25rem;
+  margin-top: 2.2rem;
+}
+
+.intro__enter {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 50%, transparent),
+    0 16px 40px -18px var(--glow),
+    0 0 24px -12px var(--glow);
+}
+
+.intro__skip {
+  border: 0;
+  background: none;
+  padding: 0.55rem 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.intro__skip:hover {
+  color: var(--ink);
+}
+
+.intro__optout {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.intro__optout input {
+  accent-color: var(--accent);
+}
+
+@media (min-width: 40rem) {
+  .intro__panel {
+    background-size: 44px 44px;
+  }
+}
+
+@media (max-width: 30rem) {
+  .intro__boot-line {
+    font-size: 0.72rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro__panel {
+    animation: intro-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .intro.is-ready .intro__reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .intro.is-ready .intro__title {
+    animation: var(--animate-boot-flicker);
+  }
+}
+
+@keyframes intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes intro-exit {
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.99);
+  }
+}

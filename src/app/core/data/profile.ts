@@ -100,12 +100,10 @@ export const profile = {
   },
   navLinks: [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'learning', label: 'Learning' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'education', label: 'Education' },
+    { id: 'about', label: 'Character' },
+    { id: 'skills', label: 'Skill Tree' },
+    { id: 'projects', label: 'Missions' },
+    { id: 'experience', label: 'Career Log' },
     { id: 'contact', label: 'Contact' },
   ] as NavLink[],
   about: {

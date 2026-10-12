@@ -59,6 +59,13 @@ export class CaseStudyModal implements OnInit, OnDestroy {
     this.closed.emit();
   }
 
+  protected missionSlug(title: string): string {
+    return title
+      .split(' ')[0]
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
+  }
+
   ngOnInit() {
     this.previouslyFocused = document.activeElement as HTMLElement | null;
     document.body.classList.add('modal-open');

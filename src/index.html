@@ -6,7 +6,7 @@
   <meta name="description" content="Portfolio of Rahul Kumar, Frontend Developer specializing in Angular and TypeScript. Systems Engineer at TCS building enterprise web applications; also building full-stack AI platforms with Python, FastAPI, Docker, and MongoDB.">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f6f8">
+  <meta name="theme-color" content="#f5f7fa">
   <meta name="author" content="Rahul Kumar">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -68,7 +68,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
 
   <link rel="stylesheet" href="widget.css" />
@@ -77,18 +77,15 @@
     (function () {
       try {
         var stored = localStorage.getItem('theme');
+        var mode = stored === 'dark' || stored === 'light' || stored === 'system' ? stored : 'system';
         var dark =
-          stored === 'dark' ||
-          (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        if (dark) {
-          document.documentElement.classList.add('dark');
-        }
-        if (stored === 'dark' || stored === 'light') {
-          document.documentElement.setAttribute('data-theme', stored);
-        }
+          mode === 'dark' ||
+          (mode !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+        document.documentElement.setAttribute('data-theme', mode);
         var metaTheme = document.querySelector('meta[name="theme-color"]');
         if (metaTheme) {
-          metaTheme.setAttribute('content', dark ? '#15161c' : '#f6f6f8');
+          metaTheme.setAttribute('content', dark ? '#0d1017' : '#f5f7fa');
         }
       } catch (e) {}
     })();
@@ -102,10 +99,10 @@
       name: 'RK',
       role: "Rahul's Assistant",
       avatar: '',
-      brand: '#7c6cf6',
-      brandDark: '#5c4ce0',
-      brandLight: '#9b8cf6',
-      bg: '#0f172a',
+      brand: '#22d3ee',
+      brandDark: '#0891b2',
+      brandLight: '#67e8f9',
+      bg: '#0b0f16',
       proactiveSec: 10,
       leadNudgeAfter: 0,
       footerNote: "RK is Rahul's assistant — for professional inquiries, reach out via email.",

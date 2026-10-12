@@ -18,11 +18,52 @@
   max-height: min(85vh, 880px);
   max-height: min(85dvh, 880px);
   background-color: var(--surface-raised);
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--line));
   border-radius: 1.25rem;
   box-shadow: 0 40px 90px -30px color-mix(in oklab, black 65%, transparent);
   overflow: hidden;
   animation: modal-rise 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.term__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background-color: color-mix(in oklab, var(--surface-sunken) 80%, transparent);
+}
+
+.term__dots {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.term__dots i {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background-color: var(--line-strong);
+}
+
+.term__dots i:first-child {
+  background-color: var(--accent);
+  box-shadow: 0 0 8px -2px var(--glow);
+}
+
+.term__path {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.modal__prompt {
+  margin-bottom: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
 }
 
 .modal__header {
@@ -95,12 +136,19 @@
 }
 
 .modal__subhead {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+.modal__section + .modal__section {
+  margin-top: 1.75rem;
 }
 
 .modal__text {
@@ -166,6 +214,22 @@
   .modal__list {
     list-style: none;
   }
+}
+
+.modal__footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.1rem 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.modal__footer-prompt {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
 }
 
 @keyframes modal-fade {

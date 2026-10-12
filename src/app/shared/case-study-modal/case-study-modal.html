@@ -6,12 +6,20 @@
       aria-modal="true"
       [attr.aria-labelledby]="'cs-title-' + project.title.toLowerCase().replaceAll(' ', '-')"
     >
+      <div class="term__bar" aria-hidden="true">
+        <span class="term__dots">
+          <i></i><i></i><i></i>
+        </span>
+        <span class="term__path">rahul@kr:~/missions/{{ missionSlug(project.title) }}</span>
+      </div>
+
       <header class="modal__header">
         <div class="modal__title-row">
           <span class="modal__icon" aria-hidden="true">
-            <app-icon name="sparkles" [size]="20" />
+            <app-icon name="crosshair" [size]="20" />
           </span>
           <div>
+            <p class="modal__prompt" aria-hidden="true">mission_briefing --id={{ missionSlug(project.title) }}</p>
             <h2
               class="modal__title"
               [id]="'cs-title-' + project.title.toLowerCase().replaceAll(' ', '-')"
@@ -35,17 +43,17 @@
       <div class="modal__body">
         @if (project.caseStudy; as study) {
           <section class="modal__section">
-            <h3 class="modal__subhead">Overview</h3>
+            <h3 class="modal__subhead"><span aria-hidden="true">&gt;</span> overview</h3>
             <p class="modal__text">{{ study.overview }}</p>
           </section>
 
           <section class="modal__section">
-            <h3 class="modal__subhead">Solution</h3>
+            <h3 class="modal__subhead"><span aria-hidden="true">&gt;</span> solution</h3>
             <p class="modal__text">{{ study.solution }}</p>
           </section>
 
           <section class="modal__section">
-            <h3 class="modal__subhead">Key features</h3>
+            <h3 class="modal__subhead"><span aria-hidden="true">&gt;</span> key features</h3>
             <ul class="modal__list">
               @for (feature of study.keyFeatures; track feature) {
                 <li class="modal__list-item">
@@ -57,7 +65,7 @@
           </section>
 
           <section class="modal__section">
-            <h3 class="modal__subhead">Technology</h3>
+            <h3 class="modal__subhead"><span aria-hidden="true">&gt;</span> loadout</h3>
             <ul class="modal__chips">
               @for (tech of study.technology; track tech) {
                 <li>
@@ -68,7 +76,7 @@
           </section>
 
           <section class="modal__section" data-modal-last>
-            <h3 class="modal__subhead">Development</h3>
+            <h3 class="modal__subhead"><span aria-hidden="true">&gt;</span> build log</h3>
             <ol class="modal__list modal__list--ordered">
               @for (step of study.development; track step) {
                 <li class="modal__list-item">
@@ -88,6 +96,7 @@
             View code
           </app-button>
         }
+        <span class="modal__footer-prompt" aria-hidden="true">[END OF TRANSMISSION]</span>
         <app-button variant="primary" size="sm" (click)="close()">
           Close <app-icon name="x" [size]="16" />
         </app-button>

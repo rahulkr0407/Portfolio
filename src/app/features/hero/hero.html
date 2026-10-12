@@ -3,6 +3,8 @@
     <span class="hero__aurora hero__aurora--a" aria-hidden="true"></span>
     <span class="hero__aurora hero__aurora--b" aria-hidden="true"></span>
   </div>
+  <span class="hero__grid-lines grid-bg" aria-hidden="true"></span>
+  <span class="hero__scanbar hud-scan" aria-hidden="true"></span>
 
   <div class="container-page hero__grid">
     <div class="hero__content">
@@ -54,18 +56,28 @@
     </div>
 
     <div class="hero__visual animate-fade-up" style="animation-delay: 200ms">
-      <div class="hero__photo-wrap">
-        <div class="hero__glow" aria-hidden="true"></div>
-        <img
-          class="hero__photo"
-          [src]="profile.photo.src"
-          [srcset]="profile.photo.srcset"
-          [sizes]="profile.photo.sizes"
-          [alt]="profile.photo.alt"
-          [width]="profile.photo.width"
-          [height]="profile.photo.height"
-          fetchpriority="high"
-        />
+      <div class="hero__hud-stage">
+        <div class="hero__photo-wrap hud-frame hud-frame--outset">
+          <div class="hero__glow" aria-hidden="true"></div>
+          <img
+            class="hero__photo"
+            [src]="profile.photo.src"
+            [srcset]="profile.photo.srcset"
+            [sizes]="profile.photo.sizes"
+            [alt]="profile.photo.alt"
+            [width]="profile.photo.width"
+            [height]="profile.photo.height"
+            fetchpriority="high"
+          />
+        </div>
+
+        <span class="hero__readout hero__readout--tl" aria-hidden="true">
+          <span class="hero__readout-dot" aria-hidden="true"></span>
+          SYS.ONLINE
+        </span>
+        <span class="hero__readout hero__readout--tr" aria-hidden="true">MOD // FRONTEND</span>
+        <span class="hero__readout hero__readout--bl" aria-hidden="true">28.6&deg;N &middot; 77.2&deg;E</span>
+        <span class="hero__readout hero__readout--br" aria-hidden="true">0407 &middot; SIG</span>
       </div>
     </div>
   </div>

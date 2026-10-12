@@ -1,50 +1,72 @@
-<section id="projects" class="section">
+<section id="projects" class="section grid-bg grid-bg--fade">
   <div class="container-page">
     <div appScrollReveal>
       <app-section-head
-        eyebrow="05 · Projects"
-        title="Projects"
-        lead="A selection of projects built to solve real problems with production-grade tooling."
+        eyebrow="04 · Missions"
+        title="Mission archive"
+        lead="A log of completed missions — each built to solve a real problem with production-grade tooling."
       />
     </div>
 
     @if (featured; as project) {
-      <article class="projects__featured" appScrollReveal>
-        <div class="projects__featured-head">
-          <div class="projects__featured-title">
-            <span class="chip projects__featured-chip">
-              <app-icon name="sparkles" [size]="14" />
-              Featured project
+      <article class="mission mission--primary hud-frame" appScrollReveal>
+        <span class="mission__glow" aria-hidden="true"></span>
+        <span class="mission__scan hud-scan" aria-hidden="true"></span>
+
+        <header class="mission__head">
+          <span class="mission__id">
+            <span class="mission__id-num">MISSION 01</span>
+            <span class="mission__id-tag">
+              <app-icon name="award" [size]="14" />
+              Primary objective
             </span>
-            <h3 class="projects__title projects__title--lg">{{ project.title }}</h3>
-            <p class="projects__tagline">{{ project.tagline }}</p>
-          </div>
-          <span class="projects__index" aria-hidden="true">01</span>
+          </span>
+          <span class="mission__status" aria-hidden="true">
+            <span class="mission__status-dot"></span>
+            BRIEFING READY
+          </span>
+        </header>
+
+        <h3 class="mission__title">{{ project.title }}</h3>
+        <p class="mission__tagline">{{ project.tagline }}</p>
+
+        <div class="mission__briefing">
+          <p class="mission__briefing-head">
+            <app-icon name="crosshair" [size]="16" />
+            Mission briefing
+          </p>
+          <ul class="mission__objectives">
+            @for (bullet of project.bullets; track bullet) {
+              <li class="mission__objective">
+                <span class="mission__objective-mark" aria-hidden="true">&gt;</span>
+                <span>{{ bullet }}</span>
+              </li>
+            }
+          </ul>
         </div>
 
-        <ul class="projects__bullets">
-          @for (bullet of project.bullets; track bullet) {
-            <li class="projects__bullet">
-              <app-icon name="arrow-right" [size]="16" />
-              <span>{{ bullet }}</span>
-            </li>
-          }
-        </ul>
+        <div class="mission__loadout">
+          <span class="mission__loadout-label">Loadout</span>
+          <ul class="mission__tags">
+            @for (tag of project.tags; track tag) {
+              <li>
+                <span class="chip">{{ tag }}</span>
+              </li>
+            }
+          </ul>
+        </div>
 
-        <ul class="projects__tags">
-          @for (tag of project.tags; track tag) {
-            <li>
-              <span class="chip">{{ tag }}</span>
-            </li>
-          }
-        </ul>
-
-        <div class="projects__actions">
+        <div class="mission__actions">
           <app-button variant="primary" (click)="openStudy(project)">
-            Open case study <app-icon name="chevron-right" [size]="18" />
+            Open briefing <app-icon name="chevron-right" [size]="18" />
           </app-button>
           @if (project.live) {
-            <app-button variant="outline" [href]="project.live" target="_blank" rel="noopener noreferrer">
+            <app-button
+              variant="outline"
+              [href]="project.live"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <app-icon name="external-link" [size]="18" />
               Live demo
             </app-button>
@@ -54,41 +76,53 @@
     }
 
     @if (secondary.length > 0) {
-      <div class="projects__grid">
-        @for (project of secondary; track project.title) {
-          <article class="card card--hover projects__card" appScrollReveal>
-            <div class="projects__card-head">
-              <span class="projects__icon" aria-hidden="true">
-                <app-icon name="briefcase" [size]="20" />
+      <div class="mission__grid">
+        @for (project of secondary; track project.title; let i = $index) {
+          <article class="mission mission--card card--hover hud-frame" appScrollReveal>
+            <header class="mission__head">
+              <span class="mission__id-num mission__id-num--sm">
+                MISSION {{ missionId(i + 1) }}
               </span>
-              <span class="projects__index">{{ ($index + 2).toString().padStart(2, '0') }}</span>
+              <span class="mission__status" aria-hidden="true">
+                <span class="mission__status-dot"></span>
+                COMPLETE
+              </span>
+            </header>
+
+            <h3 class="mission__title mission__title--card">{{ project.title }}</h3>
+            <p class="mission__tagline">{{ project.tagline }}</p>
+
+            <div class="mission__briefing">
+              <p class="mission__briefing-head">
+                <app-icon name="crosshair" [size]="15" />
+                Mission briefing
+              </p>
+              <ul class="mission__objectives">
+                @for (bullet of project.bullets; track bullet) {
+                  <li class="mission__objective">
+                    <span class="mission__objective-mark" aria-hidden="true">&gt;</span>
+                    <span>{{ bullet }}</span>
+                  </li>
+                }
+              </ul>
             </div>
 
-            <h3 class="projects__title">{{ project.title }}</h3>
-            <p class="projects__tagline">{{ project.tagline }}</p>
-
-            <ul class="projects__bullets">
-              @for (bullet of project.bullets; track bullet) {
-                <li class="projects__bullet">
-                  <app-icon name="arrow-right" [size]="16" />
-                  <span>{{ bullet }}</span>
-                </li>
-              }
-            </ul>
-
-            <ul class="projects__tags">
-              @for (tag of project.tags; track tag) {
-                <li>
-                  <span class="chip">{{ tag }}</span>
-                </li>
-              }
-            </ul>
+            <div class="mission__loadout">
+              <span class="mission__loadout-label">Loadout</span>
+              <ul class="mission__tags">
+                @for (tag of project.tags; track tag) {
+                  <li>
+                    <span class="chip">{{ tag }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
 
             @if (project.github || project.live) {
-              <div class="projects__card-actions">
+              <div class="mission__card-actions">
                 @if (project.github) {
                   <a
-                    class="projects__card-link"
+                    class="mission__card-link"
                     [href]="project.github"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -100,7 +134,7 @@
                 }
                 @if (project.live) {
                   <a
-                    class="projects__card-link"
+                    class="mission__card-link"
                     [href]="project.live"
                     target="_blank"
                     rel="noopener noreferrer"

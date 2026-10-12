@@ -29,4 +29,8 @@ export class Projects {
   protected closeStudy() {
     this.activeStudy.set(null);
   }
+
+  protected missionId(index: number): string {
+    return String(index + 1).padStart(2, '0');
+  }
 }

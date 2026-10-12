@@ -1,15 +1,23 @@
-<section id="contact" class="section">
+<section id="contact" class="section grid-bg grid-bg--fade">
   <div class="container-page">
     <div appScrollReveal>
       <app-section-head
         eyebrow="08 · Contact"
-        title="Let's start a conversation"
-        lead="Whether you have a role in mind, a project question, or just want to connect — my inbox is open."
+        title="Open a channel"
+        lead="Whether you have a role in mind, a project question, or just want to connect — the line is open."
       />
     </div>
 
-    <div class="contact__grid" appScrollReveal>
-      <a class="card card--hover contact__card" href="mailto:{{ profile.email }}">
+    <div class="contact__channels" appScrollReveal>
+      <span class="contact__channels-label">&#47;&#47; available channels</span>
+      <span class="contact__channels-status" aria-hidden="true">
+        <span class="contact__channels-dot"></span>
+        CONNECTION READY
+      </span>
+    </div>
+
+    <div class="contact__grid">
+      <a class="card card--hover contact__card hud-frame" href="mailto:{{ profile.email }}">
         <span class="contact__icon" aria-hidden="true">
           <app-icon name="mail" [size]="20" />
         </span>
@@ -17,7 +25,7 @@
         <span class="contact__value">{{ profile.email }}</span>
       </a>
 
-      <a class="card card--hover contact__card" [href]="telHref">
+      <a class="card card--hover contact__card hud-frame" [href]="telHref">
         <span class="contact__icon" aria-hidden="true">
           <app-icon name="phone" [size]="20" />
         </span>
@@ -25,7 +33,7 @@
         <span class="contact__value">{{ profile.phone }}</span>
       </a>
 
-      <div class="card contact__card">
+      <div class="card contact__card hud-frame">
         <span class="contact__icon" aria-hidden="true">
           <app-icon name="map-pin" [size]="20" />
         </span>
@@ -34,70 +42,85 @@
       </div>
     </div>
 
-    <form class="card contact__form" appScrollReveal (submit)="onSubmit($event)" novalidate>
-      <div class="contact__form-head">
-        <h3 class="contact__form-title">Send me a message</h3>
-        <p class="contact__form-sub">I'll get back to you as soon as possible.</p>
+    <form class="card contact__form hud-frame" appScrollReveal (submit)="onSubmit($event)" novalidate>
+      <div class="contact__term-bar" aria-hidden="true">
+        <span class="contact__term-dots"><i></i><i></i><i></i></span>
+        <span class="contact__term-path">rahul@kr:~/contact — secure channel</span>
       </div>
 
-      <div class="contact__field">
-        <label class="contact__field-label" for="contact-name">Name</label>
-        <input
-          class="contact__input"
-          id="contact-name"
-          name="name"
-          type="text"
-          autocomplete="name"
-          required
-        />
-      </div>
+      <div class="contact__form-body">
+        <div class="contact__form-head">
+          <h3 class="contact__form-title">Send me a message</h3>
+          <p class="contact__form-sub">
+            <span class="contact__prompt" aria-hidden="true">$</span> compose --to rahul
+          </p>
+        </div>
 
-      <div class="contact__field">
-        <label class="contact__field-label" for="contact-email">Email</label>
-        <input
-          class="contact__input"
-          id="contact-email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          required
-        />
-      </div>
+        <div class="contact__field">
+          <label class="contact__field-label" for="contact-name">
+            <span class="contact__prompt" aria-hidden="true">&gt;</span> Name
+          </label>
+          <input
+            class="contact__input"
+            id="contact-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+          />
+        </div>
 
-      <div class="contact__field">
-        <label class="contact__field-label" for="contact-message">Message</label>
-        <textarea
-          class="contact__input contact__input--area"
-          id="contact-message"
-          name="message"
-          rows="5"
-          required
-        ></textarea>
-      </div>
+        <div class="contact__field">
+          <label class="contact__field-label" for="contact-email">
+            <span class="contact__prompt" aria-hidden="true">&gt;</span> Email
+          </label>
+          <input
+            class="contact__input"
+            id="contact-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </div>
 
-      <p class="contact__hp" aria-hidden="true">
-        <input name="website" type="text" tabindex="-1" autocomplete="off" />
-      </p>
+        <div class="contact__field">
+          <label class="contact__field-label" for="contact-message">
+            <span class="contact__prompt" aria-hidden="true">&gt;</span> Message
+          </label>
+          <textarea
+            class="contact__input contact__input--area"
+            id="contact-message"
+            name="message"
+            rows="5"
+            required
+          ></textarea>
+        </div>
 
-      <div class="contact__form-foot">
-        <button type="submit" class="btn btn--primary" [disabled]="formStatus() === 'sending'">
-          @if (formStatus() === 'sending') {
-            Sending…
-          } @else {
-            <app-icon name="mail" [size]="18" />
-            Send message
+        <p class="contact__hp" aria-hidden="true">
+          <input name="website" type="text" tabindex="-1" autocomplete="off" />
+        </p>
+
+        <div class="contact__form-foot">
+          <button type="submit" class="btn btn--primary" [disabled]="formStatus() === 'sending'">
+            @if (formStatus() === 'sending') {
+              Transmitting…
+            } @else {
+              <app-icon name="target" [size]="18" />
+              Transmit message
+            }
+          </button>
+
+          @if (formStatus() === 'sent') {
+            <p class="contact__form-note contact__form-note--ok">
+              &gt; transmission successful — I'll reply soon.
+            </p>
+          } @else if (formStatus() === 'error') {
+            <p class="contact__form-note contact__form-note--err">
+              &gt; transmission failed — please email me directly.
+            </p>
           }
-        </button>
-
-        @if (formStatus() === 'sent') {
-          <p class="contact__form-note contact__form-note--ok">
-            Thanks — your message is on its way!
-          </p>
-        } @else if (formStatus() === 'error') {
-          <p class="contact__form-note contact__form-note--err">
-            Something went wrong — please email me directly instead.
-          </p>
-        }
+        </div>
       </div>
     </form>
 
@@ -128,7 +151,7 @@
       </button>
     </div>
 
-    <div class="card contact__resume" appScrollReveal>
+    <div class="card contact__resume hud-frame" appScrollReveal>
       <div class="contact__resume-copy">
         <h3 class="contact__resume-title">Want the full picture?</h3>
         <p class="contact__resume-text">

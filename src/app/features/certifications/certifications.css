@@ -2,7 +2,7 @@
   display: block;
 }
 
-.certifications__grid {
+.credentials__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
@@ -12,18 +12,18 @@
 }
 
 @media (min-width: 40rem) {
-  .certifications__grid {
+  .credentials__grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.certifications__card {
+.credentials__card {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
 }
 
-.certifications__icon {
+.credentials__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -36,31 +36,31 @@
   box-shadow: 0 10px 20px -12px var(--accent);
 }
 
-.certifications__body {
+.credentials__body {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.certifications__name {
+.credentials__name {
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--ink);
 }
 
-.certifications__meta {
+.credentials__meta {
   margin: 0;
   font-size: 0.9rem;
   color: var(--ink-muted);
 }
 
-.certifications__sep {
+.credentials__sep {
   margin: 0 0.35rem;
   color: var(--ink-soft);
 }
 
-.certifications__year {
+.credentials__year {
   font-family: var(--font-mono);
   color: var(--accent);
 }

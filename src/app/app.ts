@@ -9,6 +9,10 @@ import { Hero } from './features/hero/hero';
 import { Learning } from './features/learning/learning';
 import { Projects } from './features/projects/projects';
 import { Skills } from './features/skills/skills';
+import { Ambient } from './shared/ambient/ambient';
+import { CommandPalette } from './shared/command-palette/command-palette';
+import { EasterEgg } from './shared/easter-egg/easter-egg';
+import { Intro } from './shared/intro/intro';
 import { Marquee } from './shared/marquee/marquee';
 import { Navbar } from './shared/navbar/navbar';
 import { ScrollProgress } from './shared/scroll-progress/scroll-progress';
@@ -17,6 +21,8 @@ import { SiteFooter } from './shared/site-footer/site-footer';
 @Component({
   selector: 'app-root',
   imports: [
+    Ambient,
+    Intro,
     Navbar,
     ScrollProgress,
     Marquee,
@@ -30,6 +36,8 @@ import { SiteFooter } from './shared/site-footer/site-footer';
     Certifications,
     Contact,
     SiteFooter,
+    CommandPalette,
+    EasterEgg,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

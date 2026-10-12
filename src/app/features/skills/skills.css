@@ -2,97 +2,200 @@
   display: block;
 }
 
-.skills__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
+.tree {
   margin-top: 3rem;
 }
 
-@media (min-width: 40rem) {
-  .skills__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 64rem) {
-  .skills__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.skills__card {
+.tree__branches {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
-.skills__card--highlight {
+.tree__branch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  background-color: var(--surface-raised);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.tree__branch:hover {
   border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
-  background-image: linear-gradient(180deg, color-mix(in oklab, var(--accent) 7%, var(--surface-raised)), var(--surface-raised));
+  color: var(--ink);
+  transform: translateY(-2px);
 }
 
-.skills__badge {
-  position: absolute;
-  top: 1.4rem;
-  right: 1.4rem;
+.tree__branch.is-active {
+  border-color: color-mix(in oklab, var(--accent) 65%, var(--line));
+  color: var(--ink);
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent) 10%, var(--surface-raised)),
+    var(--surface-raised)
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 25%, transparent),
+    0 14px 30px -20px var(--glow);
+}
+
+.tree__branch-icon {
+  display: inline-flex;
+  color: var(--accent);
+}
+
+.tree__branch-count {
+  color: var(--ink-muted);
+  font-size: 0.68rem;
+}
+
+.tree__panel {
+  position: relative;
+  margin-top: 1.25rem;
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent) 5%, var(--surface-raised)),
+    var(--surface-raised)
+  );
+}
+
+.tree__panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.tree__root {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.tree__root-icon {
+  display: inline-flex;
+  color: var(--accent);
+}
+
+.tree__badge {
   padding: 0.18rem 0.55rem;
   border-radius: 999px;
   background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
   color: var(--on-accent);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.skills__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.85rem;
-  background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
-  color: var(--on-accent);
-  box-shadow: 0 10px 22px -12px var(--accent);
+.tree__meta {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
 }
 
-.skills__title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.skills__card-top {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-  align-items: flex-start;
-}
-
-.skills__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.9rem;
+.tree__nodes {
+  position: relative;
   margin: 0;
-  padding: 0;
+  padding: 1.1rem 0 1.1rem 0;
   list-style: none;
 }
 
-.skills__item {
-  display: inline-flex;
+.tree__nodes::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1.6rem;
+  bottom: 1.6rem;
+  width: 1px;
+  background-image: linear-gradient(180deg, transparent, var(--line), var(--line), transparent);
+}
+
+.tree__node {
+  position: relative;
+  display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 0.92rem;
+  gap: 0.9rem;
+  padding: 0.7rem 0 0.7rem 2rem;
+  animation: tree-node-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--node-delay, 0ms);
+}
+
+.tree__node + .tree__node {
+  border-top: 1px solid color-mix(in oklab, var(--line) 55%, transparent);
+}
+
+.tree__node-dot {
+  position: absolute;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background-color: var(--accent);
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent),
+    0 0 12px -1px var(--glow);
+}
+
+.tree__node-label {
+  font-size: 0.95rem;
   color: var(--ink-soft);
 }
 
-.skills__dot {
-  width: 0.35rem;
-  height: 0.35rem;
-  border-radius: 999px;
-  background-color: var(--accent);
+.tree__node-status {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: color-mix(in oklab, var(--accent) 80%, var(--ink-muted));
+}
+
+@keyframes tree-node-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tree__branch {
+    transition: none;
+  }
+
+  .tree__node {
+    animation: none;
+  }
 }
